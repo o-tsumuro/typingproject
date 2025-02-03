@@ -1,5 +1,6 @@
 from django import forms
 from .models import CustomUser
+from django.core.exceptions import ValidationError
 
 class CustomUserCreationForm(forms.ModelForm):
     password = forms.CharField(label="パスワード", widget=forms.PasswordInput)
@@ -18,5 +19,11 @@ class CustomUserCreationForm(forms.ModelForm):
     def clean_password(self):
         password = self.cleaned_data.get("password")
         if len(password) < 8:
-            raise forms.ValidationError("パスワードは8文字以上にしてください。")
+            raise ValidationError("パスワードは8文字以上にしてください。")
         return password
+
+    def clean_username(self):
+        username = self.cleaned_data('username')
+        if CustomUser.objects.filter(username=username).exists():
+            raise ValidationError('このユーザーネームは既に使用されています。')
+        return username
