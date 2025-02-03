@@ -11,6 +11,10 @@
         <form method="post">
             {% csrf_token %}
 
+            {% if form.errors %}
+                <p style="color: red;">ユーザーネームとパスワードが一致しません</p>
+            {% endif %}
+
             <div class="form-group">
                 <label for="username">ユーザーネーム</label>
                 <input type="text" id="username" name="username" class="form-input" placeholder="ユーザーネームを入力" required>
