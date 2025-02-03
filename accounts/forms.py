@@ -23,7 +23,7 @@ class CustomUserCreationForm(forms.ModelForm):
         return password
 
     def clean_username(self):
-        username = self.cleaned_data('username')
+        username = self.cleaned_data.get('username')
         if CustomUser.objects.filter(username=username).exists():
             raise ValidationError('このユーザーネームは既に使用されています。')
         return username
