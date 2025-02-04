@@ -9,6 +9,12 @@
 </head>
 <body id="{% block page_id %}{% endblock %}">
     
+<header>
+    {% if user.is_authenticated %}
+        {{ user.username }}
+    {% endif %}
+</header>
+    
     {% block contents %}{% endblock %}
 
 </body>
