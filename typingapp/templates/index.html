@@ -4,4 +4,12 @@
 
 {% block contents %}
 
+    <div id="login-user">ログイン中：{{ user.username }}</div>
+
+    <div id="title">タイトル：{{ typing_object.title }}</div>
+
+    <div id="target-sentence">{{ typing_object.sentence }}</div>
+
+    <textarea id="typing-input"></textarea>
+
 {% endblock  %}
