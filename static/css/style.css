@@ -1,0 +1,5 @@
+/*正誤判定用css*/
+.correct { background-color: gray; }
+.incorrect { background-color: red; }
+#target-sentence { white-space: pre-wrap; display: inline-block; }
+
