@@ -9,6 +9,12 @@
 </head>
 <body id="{% block page_id %}{% endblock %}">
     
+<header>
+    <a href="{% url "accounts:login" %}">ログイン</a>
+    <a href="{% url "accounts:signup" %}">サインアップ</a>
+    <a href="{% url "typingapp:index" %}">ホーム</a>
+</header>
+
     {% block contents %}{% endblock %}
 
 </body>

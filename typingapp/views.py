@@ -4,7 +4,7 @@ from .models import Content
 class IndexView(generic.DetailView):
     model = Content
     template_name = "index.html"
-    context_object_name = "typing_objcect"
+    context_object_name = "typing_object"
 
     def get_object(self, queryset=None):
         pk = self.kwargs.get("pk", 1)
