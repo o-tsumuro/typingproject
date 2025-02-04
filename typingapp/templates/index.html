@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}index{% endblock  %}
 
 {% block contents %}
 
     <div id="title">タイトル：{{ typing_object.title }}</div>
-
     <div id="target-sentence">{{ typing_object.sentence }}</div>
-
     <textarea id="typing-input"></textarea>
+
+    <script src="{% static 'js/typingChecker.js' %}"></script>
 
 {% endblock  %}
