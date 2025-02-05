@@ -2,6 +2,7 @@ import { typingInput, startButton, timer } from "./domElements.js";
 
 let timerInterval;
 
+//時間測定
 export function startTimer() {
     let startTime = new Date();
     timerInterval = setInterval(() => {
@@ -16,10 +17,12 @@ export function startTimer() {
     startButton.style.display = "none";
 }
 
+//時間測定終了
 export function stopTimer() {
     clearInterval(timerInterval);
 }
 
+//スタートボタンクリック時に計測開始
 document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener("click", startTimer);
 });

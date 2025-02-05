@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const spans = targetSentenceDiv.querySelectorAll("span");
 
     let beforeLen = 0;
+
+    //改行時のエラーマーカー定義
     let errorMarker = document.createElement("span");
     errorMarker.className = "error-marker";
     errorMarker.style.backgroundColor = "red";
@@ -18,10 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
     errorMarker.style.verticalAlign = "middle";
     targetSentenceDiv.appendChild(errorMarker);
 
+    //入力するたびに正誤判定実行
     typingInput.addEventListener("input", () => {
         const inputText = typingInput.value;
         const length = inputText.length;
 
+        //入力と目的が一致した場合時間計測終了
         if (inputText === targetText) {
             stopTimer();
             typingInput.disabled = true;
@@ -34,7 +38,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         beforeLen = length;
 
+        //1度の正誤判定処理の内に間違いがあるかを記録するフラグ
         let hasError = false;
+        //改行エラーマーカーを追加するかの判断用するためのインデックス保持変数
         let lastCorrectIndex = -1;
 
         for (let i = 0; i < targetText.length; i++) {
