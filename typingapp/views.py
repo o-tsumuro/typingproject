@@ -10,3 +10,8 @@ class IndexView(generic.DetailView):
         pk = self.kwargs.get("pk", 1)
         return Content.objects.get(pk=pk)
     
+class ContentListView(generic.ListView):
+    model = Content
+    template_name = "content_list.html"
+    context_object_name = "content"
+    queryset = Content.objects.order_by("pk")
