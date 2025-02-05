@@ -13,5 +13,5 @@ class IndexView(generic.DetailView):
 class ContentListView(generic.ListView):
     model = Content
     template_name = "content_list.html"
-    context_object_name = "content"
+    context_object_name = "content_object"
     queryset = Content.objects.order_by("pk")
