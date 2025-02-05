@@ -1,12 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const targetSentenceDiv = document.getElementById("target-sentence");
-    const typingInput = document.getElementById("typing-input");
+import { typingInput, targetSentenceDiv } from "./domElements.js";
+import { stopTimer } from "./timeTracker.js";
 
+document.addEventListener("DOMContentLoaded", () => {
     const targetText = targetSentenceDiv.textContent.trim();
 
     // 文章を1文字ずつ <span> で囲む
     targetSentenceDiv.innerHTML = [...targetText].map(char => `<span>${char}</span>`).join("");
-    // <span> 要素をすべて取得し定義
     const spans = targetSentenceDiv.querySelectorAll("span");
 
     let beforeLen = 0;
@@ -22,6 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     typingInput.addEventListener("input", () => {
         const inputText = typingInput.value;
         const length = inputText.length;
+
+        if (inputText === targetText) {
+            stopTimer();
+            typingInput.disabled = true;
+        }
 
         // 文字削除時の背景削除
         if (length < beforeLen) {
