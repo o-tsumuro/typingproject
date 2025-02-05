@@ -8,6 +8,9 @@
 
     <div id="title">タイトル：{{ typing_object.title }}</div>
     <div id="target-sentence">{{ typing_object.sentence }}</div>
+
+    <button id="start-button" value="スタート">
+    <div id="typing-time">タイム： 00:00</div>
     <textarea id="typing-input"></textarea>
 
     <script src="{% static 'js/typingChecker.js' %}"></script>
