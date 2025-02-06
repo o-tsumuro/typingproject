@@ -13,6 +13,13 @@
     <div id="timer">タイム： 00:00</div>
     <textarea id="typing-input" disabled></textarea>
 
+    <form id="typing-form" method="POST" action="{% url 'typingapp:history_create' %}">
+        {% csrf_token %}
+        <input type="hidden" name="user" value="{{ user.username }}">
+        <input type="hidden" name="title" value="{{ content_object.title }}">
+        <input type="hidden" id="typing_time" name="typing_time">
+    </form>
+
     <script type="module" src="{% static 'js/main.js' %}"></script>
 
 {% endblock  %}
