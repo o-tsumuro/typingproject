@@ -25,12 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const inputText = typingInput.value;
         const length = inputText.length;
 
-        //入力と目的が一致した場合時間計測終了
-        if (inputText === targetText) {
-            stopTimer();
-            typingInput.disabled = true;
-        }
-
         // 文字削除時の背景削除
         if (length < beforeLen) {
             spans[length].className = "";
@@ -58,6 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 spans[i].className = "";
             }
+        }
+
+                //入力と目的が一致した場合時間計測終了
+        if (inputText === targetText) {
+            typingInput.disabled = true;
+            stopTimer();
         }
 
         if (lastCorrectIndex + 1 < targetText.length && targetText[lastCorrectIndex + 1] === "\n" && length > lastCorrectIndex + 1) {
