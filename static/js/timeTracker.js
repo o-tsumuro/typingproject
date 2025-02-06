@@ -1,10 +1,11 @@
 import { typingInput, startButton, timer } from "./domElements.js";
 
 let timerInterval;
+let startTime;
 
 //時間測定
 export function startTimer() {
-    let startTime = new Date();
+    startTime = new Date();
     timerInterval = setInterval(() => {
         const elapsedTime = Math.floor((new Date() - startTime) / 1000);
         let minutes = Math.floor(elapsedTime / 60).toString().padStart(2, '0');
@@ -21,8 +22,8 @@ export function startTimer() {
 export function stopTimer() {
     clearInterval(timerInterval);
     const elapsedTime = Math.floor((new Date() - startTime) / 1000);
-    document.getElementById("typing-time").value = elapsedTime;
-    form.submit();
+    document.getElementById("typing_time").value = elapsedTime;
+    document.getElementById("typing_form").submit();
 }
 
 //スタートボタンクリック時に計測開始
