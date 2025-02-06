@@ -20,6 +20,9 @@ export function startTimer() {
 //時間測定終了
 export function stopTimer() {
     clearInterval(timerInterval);
+    const elapsedTime = Math.floor((new Date() - startTime) / 1000);
+    document.getElementById("typing-time").value = elapsedTime;
+    form.submit();
 }
 
 //スタートボタンクリック時に計測開始
