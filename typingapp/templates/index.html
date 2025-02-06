@@ -13,7 +13,7 @@
     <div id="timer">タイム： 00:00</div>
     <textarea id="typing-input" disabled></textarea>
 
-    <form id="typing_form" method="POST">
+    <form id="typing_form" method="POST" action="{% url 'typingapp:typing' pk=content_object.pk %}">
         {% csrf_token %}
         <input type="hidden" id="typing_time" name="typing_time">
     </form>
