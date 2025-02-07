@@ -19,7 +19,10 @@ class IndexView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs['pk']
         content = Content.objects.get(pk=pk)
-        is_favorite = Favorite.objects.filter(user=self.request.user, title=content).exists()
+        if self.request.user.is_authenticated:
+            is_favorite = Favorite.objects.filter(user=self.request.user, title=content).exists()
+        else:
+            is_favorite = False
         context['is_favorite'] = is_favorite
         context['content_list'] = Content.objects.all()
         return context
@@ -47,10 +50,10 @@ class IndexView(generic.DetailView):
         content = Content.objects.get(pk=pk)
         favorite = Favorite(user=request.user, title=content)
         favorite.save()
-        return redirect("typing:index")
+        return redirect("typingapp:index")
     
     def delete_favorite(self, request, *args, **kwargs):
         pk = self.kwargs['pk']
         content = Content.objects.get(pk=pk)
         Favorite.objects.filter(user=request.user, title=content).delete()
-        return redirect("typing:index")
+        return redirect("typingapp:index")
