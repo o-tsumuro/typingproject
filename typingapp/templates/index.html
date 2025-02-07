@@ -7,6 +7,8 @@
 {% block contents %}
 
     <div id="title">タイトル：{{ content_object.title }}</div>
+
+    
     <div id="target-sentence">{{ content_object.sentence }}</div>
 
     <button id="start-button">スタート</button>
@@ -15,8 +17,11 @@
 
     <form id="typing_form" method="POST" action="{% url 'typingapp:typing' pk=content_object.pk %}">
         {% csrf_token %}
+        <input type="hidden" name="action" value="save_history">
         <input type="hidden" id="typing_time" name="typing_time">
     </form>
+
+
 
     <script type="module" src="{% static 'js/main.js' %}"></script>
 
