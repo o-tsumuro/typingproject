@@ -24,8 +24,3 @@ class IndexView(generic.DetailView):
         context['content_list'] = Content.objects.all()
         return context
     
-class ContentListView(generic.ListView):
-    model = Content
-    template_name = "content_list.html"
-    context_object_name = "content_object"
-    queryset = Content.objects.order_by("pk")
