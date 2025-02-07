@@ -20,6 +20,11 @@ class IndexView(generic.DetailView):
         history.save()
         return redirect("typingapp:index")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['content_list'] = Content.objects.all()
+        return context
+    
 class ContentListView(generic.ListView):
     model = Content
     template_name = "content_list.html"
