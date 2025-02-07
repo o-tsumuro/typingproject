@@ -1,6 +1,5 @@
 from django.views import generic
 from .models import Content, History
-from .forms import HistoryForm
 from django.shortcuts import redirect
 
 class IndexView(generic.DetailView):
