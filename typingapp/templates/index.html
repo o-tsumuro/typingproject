@@ -20,4 +20,8 @@
 
     <script type="module" src="{% static 'js/main.js' %}"></script>
 
+    {% for content in content_list %}
+        <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
+    {% endfor %}
+
 {% endblock  %}
