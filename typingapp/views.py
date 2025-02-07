@@ -2,6 +2,10 @@ from django.views import generic
 from .models import Content, History, Favorite
 from django.shortcuts import redirect
 
+def first_view(request):
+    pk = 1
+    return redirect("typingapp:typing", pk=pk)
+
 class IndexView(generic.DetailView):
     model = Content
     template_name = "index.html"
@@ -13,6 +17,10 @@ class IndexView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        content = Content.objects.get(pk=pk)
+        is_favorite = Favorite.objects.filter(user=self.request.user, title=content).exists()
+        context['is_favorite'] = is_favorite
         context['content_list'] = Content.objects.all()
         return context
 
@@ -28,8 +36,8 @@ class IndexView(generic.DetailView):
 
     def save_history(self, request, *args, **kwargs):
         typing_time = request.POST.get('typing_time')
-        pk = self.kwargs['pk'] #URLからpkを取得
-        content = Content.objects.get(pk=pk) #取得したpkのContentモデルのインスタンスを取得
+        pk = self.kwargs['pk']
+        content = Content.objects.get(pk=pk)
         history = History(user=request.user, title=content, typing_time=typing_time)
         history.save()
         return redirect("typingapp:index")
@@ -44,6 +52,5 @@ class IndexView(generic.DetailView):
     def delete_favorite(self, request, *args, **kwargs):
         pk = self.kwargs['pk']
         content = Content.objects.get(pk=pk)
-        favorite = Favorite(user=request.user, title=content)
-        favorite.delete()
+        Favorite.objects.filter(user=request.user, title=content).delete()
         return redirect("typing:index")
