@@ -15,7 +15,6 @@
     <a href="{% url "accounts:login" %}">ログイン</a>
     <a href="{% url "accounts:signup" %}">サインアップ</a>
     <a href="{% url "typingapp:index" %}">ホーム</a>
-    <a href="{% url "typingapp:content_list" %}">文章リスト</a>
     
     {% if user.is_authenticated %}
         <a href="{% url "accounts:logout" %}">ログアウト</a>

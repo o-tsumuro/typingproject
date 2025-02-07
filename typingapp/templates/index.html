@@ -6,17 +6,41 @@
 
 {% block contents %}
 
-    <div id="title">タイトル：{{ content_object.title }}</div>
+    <div id="title">
+        タイトル：{{ content_object.title }}
+        {% if user.is_authenticated %}
+            {% if is_favorite %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="delete_favorite">
+                    <input type="submit" value="お気に入り削除">
+                </form>
+            {% else %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="add_favorite">
+                    <input type="submit" value="お気に入り登録">
+                </form>
+            {% endif %}
+        {% else %}
+            <input type="submit" value="お気に入り登録" disabled>
+        {% endif %}
+    </div>
+
+
     <div id="target-sentence">{{ content_object.sentence }}</div>
 
     <button id="start-button">スタート</button>
     <div id="timer">タイム： 00:00</div>
     <textarea id="typing-input" disabled></textarea>
 
-    <form id="typing_form" method="POST" action="{% url 'typingapp:typing' pk=content_object.pk %}">
+    <form id="typing_form" method="POST">
         {% csrf_token %}
+        <input type="hidden" name="action" value="save_history">
         <input type="hidden" id="typing_time" name="typing_time">
     </form>
+
+
 
     <script type="module" src="{% static 'js/main.js' %}"></script>
 
