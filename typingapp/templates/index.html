@@ -36,7 +36,6 @@
         {% csrf_token %}
         <input type="hidden" name="action" value="save_history">
         <input type="hidden" id="typing_time" name="typing_time">
-        <input type="submit" id="typing_time_submit" value="履歴を保存する">
     </form>
 
     {% for content in content_list %}

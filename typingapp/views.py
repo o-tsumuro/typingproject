@@ -38,11 +38,18 @@ class IndexView(generic.DetailView):
             return self.delete_favorite(request, *args, **kwargs)
 
     def save_history(self, request, *args, **kwargs):
-        typing_time = request.POST.get('typing_time')
+        typing_time = int(request.POST.get('typing_time'))
         pk = self.kwargs['pk']
         content = Content.objects.get(pk=pk)
         history = History(user=request.user, title=content, typing_time=typing_time)
-        history.save()
+        existing_history = History.objects.filter(user=request.user, title=content).first()
+
+        if existing_history:
+            if existing_history.typing_time >= typing_time:
+                existing_history.delete()
+                history.save()
+        else:
+            history.save()
         return redirect("typingapp:index")
     
     def add_favorite(self, request, *args, **kwargs):
