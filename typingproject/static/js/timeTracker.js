@@ -24,7 +24,7 @@ export function stopTimer() {
     const elapsedTime = Math.floor((new Date() - startTime) / 1000);
     document.getElementById("typing_time").value = elapsedTime;
     // document.getElementById("typing_form").submit();
-    document.getElementById("typing_time_submit").style.display = "block"
+    document.getElementById("typing_time_submit").style.display = "block";
 }
 
 //スタートボタンクリック時に計測開始
