@@ -11,7 +11,6 @@ class Content(models.Model):
     title = models.CharField(max_length=30, unique=True)
     sentence = models.TextField()
     is_public = models.BooleanField(default=True)
-    play_count = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
