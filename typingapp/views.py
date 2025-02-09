@@ -50,7 +50,7 @@ class IndexView(generic.DetailView):
                 history.save()
         else:
             history.save()
-        return redirect("typingapp:index")
+        return redirect("typingapp:typing", pk=pk)
     
     def add_favorite(self, request, *args, **kwargs):
         pk = self.kwargs['pk']
