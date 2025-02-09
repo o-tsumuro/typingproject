@@ -6,6 +6,21 @@
 
 {% block contents %}
 
+    <h1>文章作成</h1>
+    <form method="post">
+        {% csrf_token %}
 
+        <label for="title">タイトル</label>
+        <input type="text" id="title" name="title" required>
+
+        <label for="sentence">文章内容</label>
+        <input type="text" id="sentence" name="sentence" required>
+
+        <label for="is_public">公開にする</label>
+        <inpout type="checkbox" id="is_public" name="is_public" required>
+
+        <button type="submit">作成する</button>
+
+    </form>
 
 {% endblock %}
