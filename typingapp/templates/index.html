@@ -27,9 +27,7 @@
         {% endif %}
     </div>
 
-
     <div id="target-sentence">{{ content_object.sentence }}</div>
-
     <button id="start-button">スタート</button>
     <div id="timer">タイム： 00:00</div>
     <textarea id="typing-input" disabled></textarea>
@@ -38,14 +36,19 @@
         {% csrf_token %}
         <input type="hidden" name="action" value="save_history">
         <input type="hidden" id="typing_time" name="typing_time">
+
+        {% if user.is_authenticated %}
+            <input type="submit" id="typing_time_submit" value="履歴を保存する">
+        {% else %}
+            <input type="submit" id="typing_time_submit" value="履歴を保存する" disabled>
+        {% endif %}
+        
     </form>
-
-
-
-    <script type="module" src="{% static 'js/main.js' %}"></script>
 
     {% for content in content_list %}
         <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
     {% endfor %}
+
+    <script type="module" src="{% static 'js/main.js' %}"></script>
 
 {% endblock  %}
