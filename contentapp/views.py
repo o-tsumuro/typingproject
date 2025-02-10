@@ -21,9 +21,9 @@ class MyPageView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['content_list'] = Content.objects.filter(user=self.request.user)
-        context['history_list'] = History.objects.filter(user=self.request.user)
-        context['favorite_list'] = Favorite.objects.filter(user=self.request.user)
+        context['my_content_list'] = Content.objects.filter(user=self.request.user)
+        context['my_history_list'] = History.objects.filter(user=self.request.user)
+        context['my_favorite_list'] = Favorite.objects.filter(user=self.request.user)
         return context
     
     def post(self, request, *args, **kwargs):

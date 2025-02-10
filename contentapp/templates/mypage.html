@@ -5,10 +5,10 @@
 {% block contents %}
 
     <h1>お気に入りリスト</h1>
-    {% for favorite in favorite_list %}
+    {% for favorite in my_favorite_list %}
         <form method="post">
             {% csrf_token %}
-            {{ favorite.title }}
+            <a href="{% url "typingapp:typing" favorite.title.pk %}">{{ favorite.title }}</a>
             <input type="hidden" name="pk" value="{{ favorite.pk }}">
             <input type="submit" value="お気に入り削除">
         </form>
@@ -17,8 +17,15 @@
     <hr>
 
     <h1>タイピング履歴</h1>
-    {% for history in history_list %}
+    {% for history in my_history_list %}
         <li><a href="{% url "typingapp:typing" history.title.pk %}">{{ history.title }}</a> - {{ history.typing_time }}秒</li>
+    {% endfor %}
+
+        <hr>
+
+    <h1>自分が作成した文章</h1>
+    {% for content in my_content_list %}
+        <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
     {% endfor %}
 
 {% endblock %}
