@@ -4,6 +4,7 @@
 
 {% block contents %}
 
+    <h1>お気に入りリスト</h1>
     {% for favorite in favorite_list %}
         <form method="post">
             {% csrf_token %}
@@ -11,6 +12,13 @@
             <input type="hidden" name="pk" value="{{ favorite.pk }}">
             <input type="submit" value="お気に入り削除">
         </form>
+    {% endfor %}
+
+    <hr>
+
+    <h1>タイピング履歴</h1>
+    {% for history in history_list %}
+        <li><a href="{% url "typingapp:typing" history.title.pk %}">{{ history.title }}</a> - {{ history.typing_time }}秒</li>
     {% endfor %}
 
 {% endblock %}
