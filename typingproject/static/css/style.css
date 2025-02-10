@@ -3,6 +3,74 @@
 .incorrect { background-color: red; }
 #target-sentence { white-space: pre-wrap; display: inline-block; }
 
-#typing_time_submit {
-    display: none;
+* {
+    margin: 0;
+    padding: 0;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+header {
+    background-color: rgb(226, 251, 255);
+    text-align: center;
+    padding: 15px;
+}
+
+#content {
+    padding: 20px 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+footer {
+    background-color: rgb(226, 251, 255);
+    text-align: center;
+    padding: 20px;
+}
+
+.mypage-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.mypage-list a {
+    text-decoration: none;
+    color: #8b6b4e;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.mypage-list a:visited {
+    color: rgb(117, 96, 46);
+}
+
+.mypage-list a:hover {
+    color: #bca28a;
+    opacity: 0.8; 
+}
+
+.mypage-list li::before {
+    content: "▶";
+    color: #8b6b4e;
+    font-size: 0.7rem;
+}
+
+.left-list, .center-list, .right-list {
+    display: inline-block;
+    vertical-align: top;
+    width: 25%;
+    min-height: 70vh;
+    padding: 10px;
+    border: solid gray 1px;
+    border-radius: 20px;
+}
+

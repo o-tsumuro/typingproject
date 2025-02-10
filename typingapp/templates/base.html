@@ -22,10 +22,22 @@
         <a href="{% url "accounts:logout" %}">ログアウト</a>
         <div id="login-user">ログイン中：{{ user.username }}</div>
     {% endif %}
-    
+
 </header>
 
+<div id="content">
     {% block contents %}{% endblock %}
+</div>
+
+<footer>
+    
+    <a href="{% url "accounts:login" %}">ログイン</a>
+    <a href="{% url "accounts:signup" %}">サインアップ</a>
+    <a href="{% url "typingapp:index" %}">ホーム</a>
+    <a href="{% url "contentapp:create_content" %}">文章作成</a>
+    <a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a>
+
+</footer>
 
 </body>
 </html>
