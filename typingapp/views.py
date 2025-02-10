@@ -58,10 +58,10 @@ class IndexView(generic.DetailView):
         content = Content.objects.get(pk=pk)
         favorite = Favorite(user=request.user, title=content)
         favorite.save()
-        return redirect("typingapp:index")
+        return redirect("typingapp:typing", pk=pk)
     
     def delete_favorite(self, request, *args, **kwargs):
         pk = self.kwargs['pk']
         content = Content.objects.get(pk=pk)
         Favorite.objects.filter(user=request.user, title=content).delete()
-        return redirect("typingapp:index")
+        return redirect("typingapp:typing", pk=pk)
