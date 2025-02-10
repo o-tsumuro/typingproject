@@ -1,5 +1,6 @@
 from django.views import generic
-from .models import Content, History, Favorite
+from .models import History, Favorite
+from contentapp.models import Content
 from django.shortcuts import redirect
 
 def first_view(request):
