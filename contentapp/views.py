@@ -24,12 +24,11 @@ class MyPageView(generic.TemplateView):
         context['content_list'] = Content.objects.filter(user=self.request.user)
         context['history_list'] = History.objects.filter(user=self.request.user)
         context['favorite_list'] = Favorite.objects.filter(user=self.request.user)
-
         return context
     
     def post(self, request, *args, **kwargs):
-        pk = int(request.POST.get('pk'))
-        content = Content.objects.get(pk=pk)
-        Favorite.objects.filter(user=self.request.user, title=content).delete()
-        return redirect("contentapp:mypage", pk=pk)
+        username = request.user.username
+        pk = request.POST.get('pk')
+        Favorite.objects.filter(pk=pk).delete()
+        return redirect("contentapp:mypage", username=username)
         
