@@ -2,7 +2,3 @@
 .correct { background-color: gray; }
 .incorrect { background-color: red; }
 #target-sentence { white-space: pre-wrap; display: inline-block; }
-
-#typing_time_submit {
-    display: none;
-}
