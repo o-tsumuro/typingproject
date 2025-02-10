@@ -5,7 +5,12 @@
 {% block contents %}
 
     {% for favorite in favorite_list %}
-        
+        <form method="post">
+            {% csrf_token %}
+            {{ favorite.title }}
+            <input type="hidden" name="pk" value="{{ favorite.pk }}">
+            <input type="submit" value="お気に入り削除">
+        </form>
     {% endfor %}
 
 {% endblock %}
