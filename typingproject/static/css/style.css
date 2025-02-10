@@ -8,8 +8,22 @@
     padding: 0;
 }
 
+
 header {
     background-color: rgb(226, 251, 255);
     text-align: center;
     padding: 15px;
+}
+
+#content {
+    padding: 20px 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+footer {
+    background-color: rgb(226, 251, 255);
+    text-align: center;
+    padding: 20px;
 }
