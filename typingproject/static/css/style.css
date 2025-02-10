@@ -2,3 +2,14 @@
 .correct { background-color: gray; }
 .incorrect { background-color: red; }
 #target-sentence { white-space: pre-wrap; display: inline-block; }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(226, 251, 255);
+    text-align: center;
+    padding: 15px;
+}
