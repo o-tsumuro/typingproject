@@ -12,8 +12,8 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
+    /* display: flex; */
+    /* flex-direction: column; */
 }
 
 
@@ -24,16 +24,76 @@ header {
 }
 
 #content {
+    /* display: block; */
     padding: 20px 20px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    flex-grow: 1;
+    margin-top: 35px;
+    margin-bottom: 70px;
 }
 
 footer {
     background-color: rgb(226, 251, 255);
     text-align: center;
     padding: 20px;
+}
+
+
+.index-content {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+}
+
+.typing-content, .content-list {
+    display: inline-block;
+    padding: 30px;
+}
+
+.content-list {
+    list-style: none;
+    border: solid gray 1px;
+    border-radius: 20px;
+}
+
+.content-list a{
+    text-decoration: none;
+    color: #8b6b4e;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.content-list a:visited {
+    color: rgb(117, 96, 46);
+}
+
+.content-list a:hover {
+    color: #8b6b4e;
+    opacity: 0.8; 
+}
+
+.content-list li::before {
+    content: "▶";
+    color: #8b6b4e;
+    font-size: 0.7rem;
+}
+
+#title {
+    margin: 5px;
+    padding: 0 10px 0 10px;
+    background-color: #ebcbad;
+    border-radius: 20px;
+}
+
+#target-sentence, #typing-input {
+    min-width: 500px;
+    min-height: 20vh;
+    border: 2px solid #bca28a;
+}
+
+#favorite-button {
+    border: solid 1px #5d5d5d;
+    border-radius: 100px;
+    width: 35px;
+    font-size: 25px;
+    vertical-align: middle;
 }
 
 .mypage-list {
@@ -54,7 +114,7 @@ footer {
 }
 
 .mypage-list a:hover {
-    color: #bca28a;
+    color: #8b6b4e;
     opacity: 0.8; 
 }
 
@@ -66,11 +126,9 @@ footer {
 
 .left-list, .center-list, .right-list {
     display: inline-block;
-    vertical-align: top;
     width: 25%;
     min-height: 70vh;
     padding: 10px;
     border: solid gray 1px;
     border-radius: 20px;
 }
-
