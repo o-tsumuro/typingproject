@@ -10,7 +10,7 @@
         <div class="typing-content">
             <div id="title">
                 <form method="POST">
-                    タイトル：{{ content_object.title }}
+                    <h1>タイトル：{{ content_object.title }}
                     {% csrf_token %}
                     {% if is_favorite %}
                         <input type="hidden" name="action" value="delete_favorite">
@@ -19,6 +19,7 @@
                         <input type="hidden" name="action" value="add_favorite">
                         <button id="favorite-button" type="submit">☆</button>
                     {% endif %}
+                    </h1>
                 </form>
             </div>
 
@@ -30,6 +31,7 @@
         </div>
 
         <div class="content-list">
+            <h2>タイピングリスト</h2>
             {% for content in content_list %}
             <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
             {% endfor %}
