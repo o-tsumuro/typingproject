@@ -9,27 +9,21 @@
     <div class="index-content">
         <div class="typing-content">
             <div id="title">
-                タイトル：{{ content_object.title }}
-                {% if user.is_authenticated %}
+                <form method="POST">
+                    タイトル：{{ content_object.title }}
+                    {% csrf_token %}
                     {% if is_favorite %}
-                        <form method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="delete_favorite">
-                            <input type="submit" value="お気に入り削除">
-                        </form>
+                        <input type="hidden" name="action" value="delete_favorite">
+                        <button id="favorite-button" type="submit">★</button>
                     {% else %}
-                        <form method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="action" value="add_favorite">
-                            <input type="submit" value="お気に入り登録">
-                        </form>
+                        <input type="hidden" name="action" value="add_favorite">
+                        <button id="favorite-button" type="submit">☆</button>
                     {% endif %}
-                {% else %}
-                    <input type="submit" value="お気に入り登録" disabled>
-                {% endif %}
+                </form>
             </div>
 
             <div id="target-sentence">{{ content_object.sentence }}</div>
+            <br>
             <button id="start-button">スタート</button>
             <div id="timer">タイム： 00:00</div>
             <textarea id="typing-input" disabled></textarea>
