@@ -6,44 +6,44 @@
 
 {% block contents %}
 
-    <div class="index-content">
-        <div class="typing-content">
-            <div id="title">
-                <form method="POST">
-                    <h1>タイトル：{{ content_object.title }}
-                    {% csrf_token %}
-                    {% if is_favorite %}
-                        <input type="hidden" name="action" value="delete_favorite">
-                        <button id="favorite-button" type="submit">★</button>
-                    {% else %}
-                        <input type="hidden" name="action" value="add_favorite">
-                        <button id="favorite-button" type="submit">☆</button>
-                    {% endif %}
-                    </h1>
-                </form>
-            </div>
+<div id="title">
+    <form method="POST">
+        <h1>タイトル：{{ content_object.title }}
+            {% csrf_token %}
+            {% if is_favorite %}
+            <input type="hidden" name="action" value="delete_favorite">
+            <button id="favorite-button" type="submit">★</button>
+            {% else %}
+            <input type="hidden" name="action" value="add_favorite">
+            <button id="favorite-button" type="submit">☆</button>
+            {% endif %}
+        </h1>
+    </form>
+</div>
 
-            <div id="target-sentence">{{ content_object.sentence }}</div>
-            <br>
-            <button id="start-button">スタート</button>
-            <div id="timer">タイム： 00:00</div>
-            <textarea id="typing-input" disabled></textarea>
-        </div>
-
-        <div class="content-list">
-            <h2>タイピングリスト</h2>
-            {% for content in content_list %}
-            <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
-            {% endfor %}
-        </div>
+<div class="index-content">
+    <div class="typing-content">
+        <div id="target-sentence">{{ content_object.sentence }}</div>
+        <br>
+        <button id="start-button">スタート</button>
+        <div id="timer">タイム： 00:00</div>
+        <textarea id="typing-input" disabled></textarea>
     </div>
 
-    <form id="typing_form" method="POST">
-        {% csrf_token %}
-        <input type="hidden" name="action" value="save_history">
-        <input type="hidden" id="typing_time" name="typing_time">
-    </form>
+    <div class="content-list">
+        <h2>タイピングリスト</h2>
+        {% for content in content_list %}
+        <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
+        {% endfor %}
+    </div>
+</div>
 
-    <script type="module" src="{% static 'js/main.js' %}"></script>
+<form id="typing_form" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="action" value="save_history">
+    <input type="hidden" id="typing_time" name="typing_time">
+</form>
+
+<script type="module" src="{% static 'js/main.js' %}"></script>
 
 {% endblock  %}
