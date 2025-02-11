@@ -12,14 +12,17 @@
     
 <header>
 
-    <a href="{% url "accounts:login" %}">ログイン</a>
-    <a href="{% url "accounts:signup" %}">サインアップ</a>
-    <a href="{% url "typingapp:index" %}">ホーム</a>
-    <a href="{% url "contentapp:create_content" %}">文章作成</a>
-    <a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a>
-    
     {% if user.is_authenticated %}
         <a href="{% url "accounts:logout" %}">ログアウト</a>
+        <a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a>
+    {% else %}
+        <a href="{% url "accounts:login" %}">ログイン</a>
+        <a href="{% url "accounts:signup" %}">サインアップ</a>
+    {% endif %}
+    <a href="{% url "typingapp:index" %}">ホーム</a>
+    <a href="{% url "contentapp:create_content" %}">文章作成</a>
+    
+    {% if user.is_authenticated %}
         <div id="login-user">ログイン中：{{ user.username }}</div>
     {% endif %}
 
@@ -31,11 +34,15 @@
 
 <footer>
     
-    <a href="{% url "accounts:login" %}">ログイン</a>
-    <a href="{% url "accounts:signup" %}">サインアップ</a>
+    {% if user.is_authenticated %}
+        <a href="{% url "accounts:logout" %}">ログアウト</a>
+        <a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a>
+    {% else %}
+        <a href="{% url "accounts:login" %}">ログイン</a>
+        <a href="{% url "accounts:signup" %}">サインアップ</a>
+    {% endif %}
     <a href="{% url "typingapp:index" %}">ホーム</a>
     <a href="{% url "contentapp:create_content" %}">文章作成</a>
-    <a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a>
 
 </footer>
 
