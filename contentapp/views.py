@@ -39,12 +39,7 @@ class TypingListView(generic.ListView):
 
     def get_queryset(self):
         queryset = Content.objects.filter(is_public=True)
-        search = self.request.POST.get('search')
-        search_for = self.request.POST.get('search_for')
+        search = self.request.GET.get('search')
         if search:
-            if search_for == "title":
-                queryset = queryset.filter(title__icontains=search)
-            elif search_for == "content":
-                queryset = queryset.filter(content__icontains=search)
-
+            queryset = queryset.filter(title__icontains=search)
         return queryset
