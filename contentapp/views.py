@@ -33,17 +33,18 @@ class MyPageView(generic.TemplateView):
         return redirect("contentapp:mypage", username=username)
         
 
-class TypingListView(generic.TemplateView):
+class TypingListView(generic.ListView):
     template_name = "typing_list.html"
     context_object_name = "typing_list"
 
     def get_queryset(self):
         queryset = Content.objects.filter(is_public=True)
-        search = self.request.GET.get('search')
-        search_for = self.request.GET.get('search_for')
+        search = self.request.POST.get('search')
+        search_for = self.request.POST.get('search_for')
         if search:
             if search_for == "title":
                 queryset = queryset.filter(title__icontains=search)
             elif search_for == "content":
                 queryset = queryset.filter(content__icontains=search)
+
         return queryset
