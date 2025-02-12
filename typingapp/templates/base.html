@@ -13,19 +13,24 @@
 <header>
 
     {% if user.is_authenticated %}
+        <div id="login-user">{{ user.username }}</div>
+    {% endif %}
+
+    <form method="get" action="{% url "contentapp:typing_list" %}">
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="検索ワードを入力...">
+        <button type="submit">検索</button>
+    </form>
+    <a href="{% url "typingapp:index" %}">トップ</a>
+    <a href="{% url "contentapp:create_content" %}">文章作成</a>
+    {% if user.is_authenticated %}
         <a href="{% url "accounts:logout" %}">ログアウト</a>
         <a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a>
     {% else %}
         <a href="{% url "accounts:login" %}">ログイン</a>
         <a href="{% url "accounts:signup" %}">サインアップ</a>
     {% endif %}
-    <a href="{% url "typingapp:index" %}">ホーム</a>
-    <a href="{% url "contentapp:create_content" %}">文章作成</a>
     
-    {% if user.is_authenticated %}
-        <div id="login-user">ログイン中：{{ user.username }}</div>
-    {% endif %}
-
 </header>
 
 <div id="content">
@@ -33,17 +38,7 @@
 </div>
 
 <footer>
-    
-    {% if user.is_authenticated %}
-        <a href="{% url "accounts:logout" %}">ログアウト</a>
-        <a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a>
-    {% else %}
-        <a href="{% url "accounts:login" %}">ログイン</a>
-        <a href="{% url "accounts:signup" %}">サインアップ</a>
-    {% endif %}
-    <a href="{% url "typingapp:index" %}">ホーム</a>
-    <a href="{% url "contentapp:create_content" %}">文章作成</a>
-
+    &copy; 2025 tsumuro
 </footer>
 
 </body>

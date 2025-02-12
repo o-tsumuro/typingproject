@@ -1,7 +1,7 @@
 from django.views import generic
-from .forms import ContentForm
 from django.shortcuts import redirect
 from django.urls import reverse
+from .forms import ContentForm
 from typingapp.models import History, Favorite
 from .models import Content
 
@@ -32,3 +32,14 @@ class MyPageView(generic.TemplateView):
         Favorite.objects.filter(pk=pk).delete()
         return redirect("contentapp:mypage", username=username)
         
+
+class TypingListView(generic.ListView):
+    template_name = "typing_list.html"
+    context_object_name = "typing_list"
+
+    def get_queryset(self):
+        queryset = Content.objects.filter(is_public=True)
+        search = self.request.GET.get('search')
+        if search:
+            queryset = queryset.filter(title__icontains=search)
+        return queryset

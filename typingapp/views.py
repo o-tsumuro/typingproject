@@ -25,7 +25,7 @@ class IndexView(generic.DetailView):
         else:
             is_favorite = False
         context['is_favorite'] = is_favorite
-        context['content_list'] = Content.objects.all()
+        context['content_list'] = Content.objects.filter(is_public=True)
         return context
 
     def post(self, request, *args, **kwargs):
