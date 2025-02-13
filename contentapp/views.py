@@ -52,6 +52,12 @@ class MyPageView(generic.TemplateView):
         content = Content.objects.filter(pk=pk)
         content(is_public=True)
         return redirect("contentapp:mypage", username=request.user.username)
+    
+    def set_private(self, request, *ars, **kwargs):
+        pk = request.POST.get("pk")
+        content = Content.objects.filter(pk=pk)
+        content(is_public=False)
+        return redirect("contetnapp:mypage", username=request.user.username)
 
 class TypingListView(generic.ListView):
     template_name = "typing_list.html"
