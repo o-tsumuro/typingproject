@@ -26,12 +26,6 @@ class MyPageView(generic.TemplateView):
         context['my_favorite_list'] = Favorite.objects.filter(user=self.request.user)
         return context
     
-    # def post(self, request, *args, **kwargs):
-    #     username = request.user.username
-    #     pk = request.POST.get('pk')
-    #     Favorite.objects.filter(pk=pk).delete()
-    #     return redirect("contentapp:mypage", username=username)
-        
     def post(self, request, *args, **kwargs):
         action = request.POST.get("action")
 

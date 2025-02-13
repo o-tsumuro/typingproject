@@ -15,3 +15,4 @@ class SignUpView(generic.CreateView):
         user = authenticate(username=username, password=password)
         login(self.request, user)
         return respense
+    
