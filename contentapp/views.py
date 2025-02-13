@@ -36,11 +36,11 @@ class MyPageView(generic.TemplateView):
         action = request.POST.get("action")
 
         if action =="del_favorite":
-            return
+            return self.del_favorite(request, *args, **kwargs)
         elif action == "set_public":
-            return
+            return self.set_public(request, *args, **kwargs)
         elif action == "set_private":
-            return
+            return self.set_private(request, *args, **kwargs)
         
     def del_favorite(self, request, *args, **kwargs):
         pk = request.POST.get("pk")
@@ -49,15 +49,13 @@ class MyPageView(generic.TemplateView):
     
     def set_public(self, request, *args, **kwargs):
         pk = request.POST.get("pk")
-        content = Content.objects.filter(pk=pk)
-        content(is_public=True)
+        Content.objects.filter(pk=pk).update(is_public=True)
         return redirect("contentapp:mypage", username=request.user.username)
     
     def set_private(self, request, *ars, **kwargs):
         pk = request.POST.get("pk")
-        content = Content.objects.filter(pk=pk)
-        content(is_public=False)
-        return redirect("contetnapp:mypage", username=request.user.username)
+        Content.objects.filter(pk=pk).update(is_public=False)
+        return redirect("contentapp:mypage", username=request.user.username)
 
 class TypingListView(generic.ListView):
     template_name = "typing_list.html"

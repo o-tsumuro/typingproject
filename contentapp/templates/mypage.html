@@ -37,12 +37,12 @@
                         <input type="hidden" name="pk" value="{{ content.pk }}">
                         {% if content.is_public %}
                             <input type="hidden" name="action" value="set_private">
-                            <button type="submit" disable>公開</butto>
+                            <button type="submit" style="background-color: skyblue;" disable>公開</butto>
                             <button type="submit">非公開</button>
                         {% else %}
                             <input type="hidden" name="action" value="set_public">
                             <button type="submit">公開</butto>
-                            <button type="submit" disable>非公開</button>
+                            <button type="submit" style="background-color: skyblue;" disable>非公開</button>
                         {% endif %}
                     </li>
                 </form>
