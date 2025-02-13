@@ -26,12 +26,36 @@ class MyPageView(generic.TemplateView):
         context['my_favorite_list'] = Favorite.objects.filter(user=self.request.user)
         return context
     
-    def post(self, request, *args, **kwargs):
-        username = request.user.username
-        pk = request.POST.get('pk')
-        Favorite.objects.filter(pk=pk).delete()
-        return redirect("contentapp:mypage", username=username)
+    # def post(self, request, *args, **kwargs):
+    #     username = request.user.username
+    #     pk = request.POST.get('pk')
+    #     Favorite.objects.filter(pk=pk).delete()
+    #     return redirect("contentapp:mypage", username=username)
         
+    def post(self, request, *args, **kwargs):
+        action = request.POST.get("action")
+
+        if action =="del_favorite":
+            return self.del_favorite(request, *args, **kwargs)
+        elif action == "set_public":
+            return self.set_public(request, *args, **kwargs)
+        elif action == "set_private":
+            return self.set_private(request, *args, **kwargs)
+        
+    def del_favorite(self, request, *args, **kwargs):
+        pk = request.POST.get("pk")
+        Favorite.objects.filter(pk=pk).delete()
+        return redirect("contentapp:mypage", username=request.user.username)
+    
+    def set_public(self, request, *args, **kwargs):
+        pk = request.POST.get("pk")
+        Content.objects.filter(pk=pk).update(is_public=True)
+        return redirect("contentapp:mypage", username=request.user.username)
+    
+    def set_private(self, request, *ars, **kwargs):
+        pk = request.POST.get("pk")
+        Content.objects.filter(pk=pk).update(is_public=False)
+        return redirect("contentapp:mypage", username=request.user.username)
 
 class TypingListView(generic.ListView):
     template_name = "typing_list.html"
