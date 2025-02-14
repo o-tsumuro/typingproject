@@ -26,7 +26,7 @@ class IndexView(generic.DetailView):
         else:
             is_favorite = False
         context['is_favorite'] = is_favorite
-        context['content_list'] = Content.objects.filter(is_public=True)
+        context['content_list'] = Content.objects.filter(is_public=True).order_by('-play_count')
         return context
 
     def post(self, request, *args, **kwargs):
@@ -43,7 +43,7 @@ class IndexView(generic.DetailView):
         typing_time = int(request.POST.get('typing_time'))
         pk = self.kwargs['pk']
         content = Content.objects.get(pk=pk)
-        
+
         Content.objects.filter(pk=pk).update(play_count=F("play_count") + 1)
 
         history = History(user=request.user, title=content, typing_time=typing_time)
