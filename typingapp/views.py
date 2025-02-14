@@ -1,7 +1,8 @@
 from django.views import generic
+from django.shortcuts import redirect
+from django.db.models import F
 from .models import History, Favorite
 from contentapp.models import Content
-from django.shortcuts import redirect
 
 def first_view(request):
     pk = 1
@@ -42,6 +43,9 @@ class IndexView(generic.DetailView):
         typing_time = int(request.POST.get('typing_time'))
         pk = self.kwargs['pk']
         content = Content.objects.get(pk=pk)
+        
+        Content.objects.filter(pk=pk).update(play_count=F("play_count") + 1)
+
         history = History(user=request.user, title=content, typing_time=typing_time)
         existing_history = History.objects.filter(user=request.user, title=content).first()
 
