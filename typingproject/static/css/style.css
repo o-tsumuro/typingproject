@@ -165,3 +165,9 @@ header a:hover {
     border-radius: 10px;
     margin: auto;
 }
+
+.result-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
