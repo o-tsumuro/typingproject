@@ -16,6 +16,13 @@
         <p>今回のタイム: {{ current_time }} 秒</p>
         <p>最高タイム: {{ history.typing_time }} 秒</p>
     {% endif %}
+
+    <div class="content-list">
+        <h2>タイピングリスト</h2>
+        {% for content in content_list %}
+        <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
