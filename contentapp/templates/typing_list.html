@@ -4,9 +4,18 @@
 
 {% block contents %}
 
+<form method="get">
+    {% csrf_token %}
+    <label for="category">カテゴリー</label>
+        <button type="submit" name="category" value="" selected>---------</button>
+        {% for category in categories %}
+            <button type="submit" name="category" value="{{ category.pk }}">{{ category.name }}</button>
+        {% endfor %}
+</form>
+
 <ul class="list">
     {% for typing in typing_list %}
-        <li><a href="{% url "typingapp:typing" typing.pk %}">{{ typing.title|truncatechars:20 }}</a></li>
+        <li><a href="{% url 'typingapp:typing' typing.pk %}">{{ typing.title|truncatechars:20 }}</a></li>
     {% endfor %}
 </ul>
 

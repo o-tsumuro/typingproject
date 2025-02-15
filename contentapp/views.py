@@ -16,11 +16,6 @@ class CreateContentView(generic.CreateView):
         success_url = reverse('typingapp:typing', kwargs={'pk':data.pk})
         return redirect(success_url)
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categorys'] = Category.objects.all()
-        return context
-    
 class MyPageView(generic.TemplateView):
     template_name = "mypage.html"
 
@@ -62,7 +57,18 @@ class TypingListView(generic.ListView):
 
     def get_queryset(self):
         queryset = Content.objects.filter(is_public=True)
+
         search = self.request.GET.get('search')
         if search:
             queryset = queryset.filter(title__icontains=search)
+
+        category = self.request.GET.get('category')
+        if category:
+            queryset = queryset.filter(category=category)
+
         return queryset
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
