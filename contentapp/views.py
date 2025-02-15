@@ -3,7 +3,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from .forms import ContentForm
 from typingapp.models import History, Favorite
-from .models import Content
+from .models import Content, Category
 
 class CreateContentView(generic.CreateView):
     form_class = ContentForm
@@ -15,6 +15,11 @@ class CreateContentView(generic.CreateView):
         data.save()
         success_url = reverse('typingapp:typing', kwargs={'pk':data.pk})
         return redirect(success_url)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categorys'] = Category.objects.all()
+        return context
     
 class MyPageView(generic.TemplateView):
     template_name = "mypage.html"
