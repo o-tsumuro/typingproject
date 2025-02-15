@@ -85,4 +85,5 @@ class ResultView(generic.DetailView):
         current_time = self.kwargs.get("current_time")
         context["current_time"] = int(current_time)
         context["is_best_time"] = current_time == self.object.typing_time
+        context['content_list'] = Content.objects.filter(is_public=True).order_by('-play_count')
         return context
