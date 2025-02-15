@@ -48,14 +48,19 @@ class IndexView(generic.DetailView):
 
         history = History(user=request.user, title=content, typing_time=typing_time)
         existing_history = History.objects.filter(user=request.user, title=content).first()
+        if existing_history:
+            result_page_pk = existing_history.pk
 
         if existing_history:
             if existing_history.typing_time >= typing_time:
                 existing_history.delete()
                 history.save()
+                result_page_pk = history.pk
         else:
             history.save()
-        return redirect("typingapp:typing", pk=pk)
+            result_page_pk = history.pk
+
+        return redirect("typingapp:result", pk=result_page_pk, current_time=typing_time)
     
     def add_favorite(self, request, *args, **kwargs):
         pk = self.kwargs['pk']
@@ -69,3 +74,15 @@ class IndexView(generic.DetailView):
         content = Content.objects.get(pk=pk)
         Favorite.objects.filter(user=request.user, title=content).delete()
         return redirect("typingapp:typing", pk=pk)
+    
+class ResultView(generic.DetailView):
+    model = History
+    template_name = "result.html"
+    context_object_name = "history"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_time = self.kwargs.get("current_time")
+        context["current_time"] = int(current_time)
+        context["is_best_time"] = current_time == self.object.typing_time
+        return context
