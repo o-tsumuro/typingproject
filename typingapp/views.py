@@ -27,6 +27,7 @@ class IndexView(generic.DetailView):
             is_favorite = False
         context['is_favorite'] = is_favorite
         context['content_list'] = Content.objects.filter(is_public=True).order_by('-play_count')
+        context['ranking_list'] = History.objects.filter(title__title=self.object.title).order_by("typing_time")
         return context
 
     def post(self, request, *args, **kwargs):
@@ -86,4 +87,5 @@ class ResultView(generic.DetailView):
         context["current_time"] = int(current_time)
         context["is_best_time"] = current_time == self.object.typing_time
         context['content_list'] = Content.objects.filter(is_public=True).order_by('-play_count')
+        context['ranking_list'] = History.objects.filter(title__title=self.object.title).order_by("typing_time")
         return context
