@@ -39,6 +39,15 @@
     </div>
 </div>
 
+<div class="ranking_list">
+    <h2>ランキング</h2>
+    {% for ranking in ranking_list %}
+        <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time }}秒</li>
+    {% empty %}
+        <p>まだランキングがありません</p>
+    {% endfor %}
+</div>
+
 <form id="typing_form" method="POST">
     {% csrf_token %}
     <input type="hidden" name="action" value="save_history">

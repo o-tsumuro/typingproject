@@ -21,6 +21,8 @@
         <h2>ランキング</h2>
         {% for ranking in ranking_list %}
             <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time }}秒</li>
+        {% empty %}
+            <p>まだランキングがありません</p>
         {% endfor %}
     </div>
 
