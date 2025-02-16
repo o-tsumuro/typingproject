@@ -31,21 +31,21 @@
         <textarea id="typing-input" disabled></textarea>
     </div>
 
+    <div class="ranking_list">
+        <h2>ランキング</h2>
+        {% for ranking in ranking_list %}
+            <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time }}秒</li>
+        {% empty %}
+            <p>まだランキングがありません</p>
+        {% endfor %}
+    </div>
+
     <div class="content-list">
         <h2>タイピングリスト</h2>
         {% for content in content_list %}
         <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
         {% endfor %}
     </div>
-</div>
-
-<div class="ranking_list">
-    <h2>ランキング</h2>
-    {% for ranking in ranking_list %}
-        <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time }}秒</li>
-    {% empty %}
-        <p>まだランキングがありません</p>
-    {% endfor %}
 </div>
 
 <form id="typing_form" method="POST">
