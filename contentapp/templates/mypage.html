@@ -17,6 +17,8 @@
                         <input type="submit" value="お気に入り削除">
                     </li>
                 </form>
+            {% empty %}
+                <p>お気に入りが登録されていません</p>
             {% endfor %}
         </div>
 
@@ -24,6 +26,8 @@
             <h1>タイピング履歴</h1>
             {% for history in my_history_list %}
                 <li><a href="{% url "typingapp:typing" history.title.pk %}">{{ history.title }}</a> - {{ history.typing_time }}秒</li>
+            {% empty %}
+                <p>タイピング履歴が存在しません</p>
             {% endfor %}
         </div>
 
@@ -46,6 +50,8 @@
                         {% endif %}
                     </li>
                 </form>
+            {% empty %}
+                <p>作成した文章が存在しません</p>
             {% endfor %}
         </div>
     </div>
