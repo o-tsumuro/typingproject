@@ -12,7 +12,7 @@ urlpatterns = [
          name='login'),
 
     path('logout/',
-         auth_views.LogoutView.as_view(next_page=reverse_lazy('typingapp:index')),
+         auth_views.LogoutView.as_view(next_page=reverse_lazy('accounts:login')),
          name='logout'),
 
 ]
