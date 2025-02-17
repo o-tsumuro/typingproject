@@ -43,7 +43,7 @@
     <div class="content-list">
         <h2>タイピングリスト</h2>
         {% for content in content_list %}
-        <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
+        <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title|truncatechars:9 }}</a></li>
         {% endfor %}
     </div>
 </div>

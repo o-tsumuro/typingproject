@@ -11,7 +11,7 @@
                 <form method="post">
                     {% csrf_token %}
                     <li>
-                        <a href="{% url "typingapp:typing" favorite.title.pk %}">{{ favorite.title }}</a>
+                        <a href="{% url "typingapp:typing" favorite.title.pk %}">{{ favorite.title|truncatechars:9 }}</a>
                         <input type="hidden" name="action" value="del_favorite">
                         <input type="hidden" name="pk" value="{{ favorite.pk }}">
                         <input type="submit" value="お気に入り削除">
@@ -25,7 +25,7 @@
         <div class="center-list">
             <h1>タイピング履歴</h1>
             {% for history in my_history_list %}
-                <li><a href="{% url "typingapp:typing" history.title.pk %}">{{ history.title }}</a> - {{ history.typing_time }}秒</li>
+                <li><a href="{% url "typingapp:typing" history.title.pk %}">{{ history.title|truncatechars:9 }}</a> - {{ history.typing_time }}秒</li>
             {% empty %}
                 <p>タイピング履歴が存在しません</p>
             {% endfor %}
@@ -37,7 +37,7 @@
                 <form method="post">
                     {% csrf_token %}
                     <li>
-                        <a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a>
+                        <a href="{% url "typingapp:typing" content.pk %}">{{ content.title|truncatechars:9 }}</a>
                         <input type="hidden" name="pk" value="{{ content.pk }}">
                         {% if content.is_public %}
                             <input type="hidden" name="action" value="set_private" style="border: 0.5px solid black">
