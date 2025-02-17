@@ -5,7 +5,7 @@ from .models import History, Favorite
 from contentapp.models import Content
 
 def first_view(request):
-    pk = 1
+    pk = Content.objects.order_by("pk").first().pk
     return redirect("typingapp:typing", pk=pk)
 
 class IndexView(generic.DetailView):
