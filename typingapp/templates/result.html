@@ -13,16 +13,16 @@
     <p><strong>文章:</strong> {{ history.title.sentence }}</p>
 
     {% if is_best_time %}
-        <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ current_time }} 秒 🎉</p>
+        <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ current_time|format_duration }} 秒 🎉</p>
     {% else %}
         <p>今回のタイム: {{ current_time|format_duration }} 秒</p>
-        <p>最高タイム: {{ history.typing_time }} 秒</p>
+        <p>最高タイム: {{ history.typing_time|format_duration }} 秒</p>
     {% endif %}
 
     <div class="ranking_list">
         <h2>ランキング</h2>
         {% for ranking in ranking_list %}
-            <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time }}秒</li>
+            <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}秒</li>
         {% empty %}
             <p>まだランキングがありません</p>
         {% endfor %}

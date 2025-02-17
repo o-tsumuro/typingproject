@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load custom_filters %}
+
 {% load static %}
 
 {% block title %}index{% endblock  %}
@@ -34,7 +36,7 @@
     <div class="ranking_list">
         <h2>ランキング</h2>
         {% for ranking in ranking_list %}
-            <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time }}秒</li>
+            <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}秒</li>
         {% empty %}
             <p>まだランキングがありません</p>
         {% endfor %}
