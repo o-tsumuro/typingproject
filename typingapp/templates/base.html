@@ -18,6 +18,7 @@
 
     <form method="get" action="{% url "contentapp:typing_list" %}">
         {% csrf_token %}
+        <input type="hidden" name="category" value="{{ request.GET.category }}">
         <input type="text" name="search" placeholder="検索ワードを入力...">
         <button type="submit">検索</button>
     </form>
