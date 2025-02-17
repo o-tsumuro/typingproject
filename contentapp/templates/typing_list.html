@@ -5,21 +5,33 @@
 {% block contents %}
 
 <div id="search_info">
-    <p>検索ワード : {{ request.GET.search }}
+    {% if request.GET.search %}
         <form method="get">
-            <input type="hidden" name="category" value="{{ request.GET.category }}">
-            <button name="search" value="">クリア</button>
+            <p>検索ワード : {{ request.GET.search }}
+                <input type="hidden" name="category" value="{{ request.GET.category }}">
+                <button name="search" value="">クリア</button>
+            </p>
         </form>
-    </p>
+    {% else %}
+        <p>検索ワード : --------</p>
+    {% endif %}
 </div>
 
 <form method="get" id="category_form">
     {% csrf_token %}
     <input type="hidden" name="search" value="{{ request.GET.search }}">
-    <label for="category">カテゴリー</label>
-    <button type="submit" name="category" value="" selected>---------</button>
+    <label for="category">カテゴリー : </label>
+    {% if request.GET.category %}
+        <button type="submit" name="category" value="" selected>--------</button>
+    {% else %}
+        <button type="submit" name="category" value="" style="background-color: skyblue" selected>--------</button>
+    {% endif %}
     {% for category in categories %}
-        <button type="submit" name="category" value="{{ category.pk }}">{{ category.name }}</button>
+        {% if request.GET.category|add:"0" == category.pk %}
+            <button type="submit" name="category" value="{{ category.pk }}" style="background-color: skyblue;">{{ category.name }}</button>
+        {% else %}
+            <button type="submit" name="category" value="{{ category.pk }}">{{ category.name }}</button>
+        {% endif %}
     {% endfor %}
 </form>
 
