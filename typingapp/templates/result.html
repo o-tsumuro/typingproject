@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load custom_filters %}
+
 {% block title %}result{% endblock %}
 
 {% block contents %}
@@ -13,7 +15,7 @@
     {% if is_best_time %}
         <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ current_time }} 秒 🎉</p>
     {% else %}
-        <p>今回のタイム: {{ current_time }} 秒</p>
+        <p>今回のタイム: {{ current_time|format_duration }} 秒</p>
         <p>最高タイム: {{ history.typing_time }} 秒</p>
     {% endif %}
 
