@@ -1,0 +1,173 @@
+/*正誤判定用css*/
+.correct { background-color: gray; }
+.incorrect { background-color: red; }
+#target-sentence { white-space: pre-wrap; display: inline-block; }
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #d4d4d4;
+}
+
+header, footer{
+    background-color: #6d6d6d;
+    text-align: center;
+    padding: 15px;
+}
+
+header a, header a:visited {
+    text-decoration: none;
+    color: #222222;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+header a:hover {
+    color: #3f3f3f;
+    opacity: 0.8;
+}
+
+#contents {
+    padding: 20px 20px;
+    margin-top: 35px;
+    margin-bottom: 70px;
+    min-height: 50vh;
+}
+
+.index-content {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+}
+
+.typing-content, .content-list {
+    display: inline-block;
+    padding: 30px;
+}
+
+.content-list {
+    margin-top: 30px;
+    list-style: none;
+    border: solid gray 1px;
+    border-radius: 20px;
+}
+
+.content-list li{
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    max-width: 250px;
+}
+
+.content-list a, .mypage-list a {
+    text-decoration: none;
+    color: #8b6b4e;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.content-list a:visited, .mypage-list a:visited {
+    color: rgb(117, 96, 46);
+}
+
+.content-list a:hover, .mypage-list a:hover {
+    color: #8b6b4e;
+    opacity: 0.8; 
+}
+
+.content-list li::before, .mypage-list li::before {
+    content: "▶";
+    color: #8b6b4e;
+    font-size: 0.7rem;
+}
+
+#title{
+    background-color: #a5a5a5;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+
+#target-sentence, #typing-input{
+    min-width: 500px;
+    min-height: 20vh;
+    border: 2px solid #333333;
+    padding: 5px;
+}
+
+#target-sentence {
+    background-color: #222222;
+    color: #d1d1d1;
+}
+
+#favorite-button {
+    border: none;
+    background-color: #a5a5a5;
+    border-radius: 100px;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.mypage-list {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.left-list, .center-list, .right-list {
+    display: inline-block;
+    width: 25%;
+    min-height: 70vh;
+    padding: 10px;
+    border: solid gray 1px;
+    border-radius: 20px;
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    width: 70%;
+    gap: 20px;
+}
+
+.list li{
+    flex: 0 0 calc(50% - 20px);
+    text-align: center;
+    background-color: #6d6d6d;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.list li:hover {
+    background-color: #808080;
+    opacity: 0.8;
+}
+
+.list li a {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #313131;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.result-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
