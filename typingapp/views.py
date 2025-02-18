@@ -49,10 +49,11 @@ class IndexView(generic.DetailView):
 
         history = History(user=request.user, title=content, typing_time=typing_time)
         existing_history = History.objects.filter(user=request.user, title=content).first()
-        if existing_history:
-            result_page_pk = existing_history.pk
+        # if existing_history:
+        #     result_page_pk = existing_history.pk
 
         if existing_history:
+            result_page_pk = existing_history.pk
             if existing_history.typing_time >= typing_time:
                 existing_history.delete()
                 history.save()
@@ -62,6 +63,12 @@ class IndexView(generic.DetailView):
             result_page_pk = history.pk
 
         return redirect("typingapp:result", pk=result_page_pk, current_time=typing_time)
+    
+    def guest_history(self, request, *args, **kwargs):
+        typing_time = int(request.POST.get('typing_time'))
+        pk = self.kwargs['pk']
+        return redirect("typingapp:guest_result", pk=pk, typing_time=typing_time)
+
     
     def add_favorite(self, request, *args, **kwargs):
         pk = self.kwargs['pk']
