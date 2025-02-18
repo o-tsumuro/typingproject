@@ -52,8 +52,12 @@
 
 <form id="typing_form" method="POST">
     {% csrf_token %}
-    <input type="hidden" name="action" value="save_history">
     <input type="hidden" id="typing_time" name="typing_time">
+    {% if user.is_authenticated %}
+        <input type="hidden" name="action" value="save_history">
+    {% else %}
+        <input type="hidden" name="action" value="guest_result">
+    {% endif %}
 </form>
 
 <script type="module" src="{% static 'js/main.js' %}"></script>

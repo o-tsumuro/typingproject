@@ -2,22 +2,19 @@
 
 {% load custom_filters %}
 
-{% block title %}result{% endblock %}
+{% block title %}guest_result{% endblock %}
 
 {% block contents %}
 
 <div class="result-content">
     <h2>タイピング結果</h2>
 
-    <p><strong>タイトル:</strong> {{ history.title }}</p>
-    <p><strong>文章:</strong> {{ history.title.sentence }}</p>
+    <p><strong>タイトル:</strong> {{ content.title }}</p>
+    <p><strong>文章:</strong> {{ content.sentence }}</p>
 
-    {% if is_best_time %}
-        <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ current_time|format_duration }} 秒 🎉</p>
-    {% else %}
-        <p>今回のタイム: {{ current_time|format_duration }} 秒</p>
-        <p>最高タイム: {{ history.typing_time|format_duration }} 秒</p>
-    {% endif %}
+        <p>今回のタイム: {{ typing_time|format_duration }} 秒</p>
+        <p>ランキング保存、履歴の保存はログインユーザーのみが利用できます。</p>
+
 
     <div class="ranking_list">
         <h2>ランキング</h2>
