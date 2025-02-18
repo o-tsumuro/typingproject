@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,32 +12,45 @@
     
 <header>
 
-    {% if user.is_authenticated %}
-        <div id="login-user">{{ user.username }}</div>
-    {% endif %}
+    <div id="site-title">Typing Site</div>
 
-    <form method="get" action="{% url "contentapp:typing_list" %}">
-        {% csrf_token %}
-        <input type="hidden" name="category" value="{{ request.GET.category }}">
-        <input type="text" name="search" placeholder="検索ワードを入力...">
-        <button type="submit">検索</button>
-    </form>
-    <a href="{% url "typingapp:index" %}">トップ</a>
-    <a href="{% url "contentapp:create_content" %}">文章作成</a>
-    {% if user.is_authenticated %}
-        <form method="post" action="{% url 'accounts:logout' %}">
-            {% csrf_token %}
-            <button type="submit">ログアウト</button>
-        </form>
-        <a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a>
-    {% else %}
-        <a href="{% url "accounts:login" %}">ログイン</a>
-        <a href="{% url "accounts:signup" %}">サインアップ</a>
-    {% endif %}
-    
+    <div class="header-right">
+
+        {% if user.is_authenticated %}
+            <div id="user">ログイン中 : {{ user.username }}</div>
+        {% else %}
+            <div id="user">ログイン中 : -----</div>
+        {% endif %}
+
+        <ul class="menu">
+            <li>
+                <form method="get" id="search" action="{% url "contentapp:typing_list" %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="category" value="{{ request.GET.category }}">
+                    <input type="text" name="search" placeholder="検索ワードを入力...">
+                    <button type="submit">検索</button>
+                </form>
+            </li>
+            <li><a href="{% url "typingapp:index" %}">トップ</a></li>
+            <li><a href="{% url "contentapp:create_content" %}">文章作成</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a></li>
+                <li>
+                    <form method="post" action="{% url 'accounts:logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" id="logout-button">ログアウト</button>
+                    </form>
+                </li>
+            {% else %}
+                <li><a href="{% url "accounts:login" %}">ログイン</a></li>
+            {% endif %}
+            </ul>
+        
+    </div>
+
 </header>
 
-<div id="content">
+<div id="contents">
     {% block contents %}{% endblock %}
 </div>
 
