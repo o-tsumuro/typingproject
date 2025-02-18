@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load custom_filters %}
+
+{% block title %}result{% endblock %}
+
+{% block contents %}
+
+<div class="result-content">
+    <h2>タイピング結果</h2>
+
+    <p><strong>タイトル:</strong> {{ history.title }}</p>
+    <p><strong>文章:</strong> {{ history.title.sentence }}</p>
+
+    {% if is_best_time %}
+        <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ current_time|format_duration }} 秒 🎉</p>
+    {% else %}
+        <p>今回のタイム: {{ current_time|format_duration }} 秒</p>
+        <p>最高タイム: {{ history.typing_time|format_duration }} 秒</p>
+    {% endif %}
+
+    <div class="ranking_list">
+        <h2>ランキング</h2>
+        {% for ranking in ranking_list %}
+            <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}秒</li>
+        {% empty %}
+            <p>まだランキングがありません</p>
+        {% endfor %}
+    </div>
+
+    <div class="content-list">
+        <h2>タイピングリスト</h2>
+        {% for content in content_list %}
+        <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
