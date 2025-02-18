@@ -35,6 +35,8 @@ class IndexView(generic.DetailView):
 
         if action == "save_history":
             return self.save_history(request, *args, **kwargs)
+        elif action == "guest_result":
+            return self.guest_result(request, *args, **kwargs)
         elif action == "add_favorite":
             return self.add_favorite(request, *args, **kwargs)
         elif action == "delete_favorite":
@@ -64,7 +66,7 @@ class IndexView(generic.DetailView):
 
         return redirect("typingapp:result", pk=result_page_pk, typing_time=typing_time)
     
-    def guest_history(self, request, *args, **kwargs):
+    def guest_result(self, request, *args, **kwargs):
         typing_time = int(request.POST.get('typing_time'))
         pk = self.kwargs['pk']
         return redirect("typingapp:guest_result", pk=pk, typing_time=typing_time)
@@ -107,5 +109,5 @@ class GuestResultView(generic.DetailView):
         typing_time = self.kwargs.get("typing_time")
         context['typing_time'] = int(typing_time)
         context['ranking_list'] = History.objects.filter(title__title=self.object.title).order_by("typing_time")
-        context['content_list'] = Content.objects.filter(is_pulic=True).order("-play_count")
+        context['content_list'] = Content.objects.filter(is_public=True).order_by("-play_count")
         return context
