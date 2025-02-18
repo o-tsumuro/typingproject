@@ -14,7 +14,7 @@ class Content(models.Model):
         null=True,
         blank=True
     )
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=50, unique=True)
     sentence = models.TextField()
     category = models.ForeignKey(
         Category,
