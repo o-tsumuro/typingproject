@@ -62,7 +62,7 @@ class IndexView(generic.DetailView):
             history.save()
             result_page_pk = history.pk
 
-        return redirect("typingapp:result", pk=result_page_pk, current_time=typing_time)
+        return redirect("typingapp:result", pk=result_page_pk, typing_time=typing_time)
     
     def guest_history(self, request, *args, **kwargs):
         typing_time = int(request.POST.get('typing_time'))
@@ -90,9 +90,9 @@ class ResultView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_time = self.kwargs.get("current_time")
-        context["current_time"] = int(current_time)
-        context["is_best_time"] = current_time == self.object.typing_time
+        typing_time = self.kwargs.get("typing_time")
+        context["typing_time"] = int(typing_time)
+        context["is_best_time"] = typing_time == self.object.typing_time
         context['ranking_list'] = History.objects.filter(title__title=self.object.title).order_by("typing_time")
         context['content_list'] = Content.objects.filter(is_public=True).order_by('-play_count')
         return context

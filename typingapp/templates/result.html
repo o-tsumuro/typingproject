@@ -13,9 +13,9 @@
     <p><strong>文章:</strong> {{ history.title.sentence }}</p>
 
     {% if is_best_time %}
-        <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ current_time|format_duration }} 秒 🎉</p>
+        <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ typing_time|format_duration }} 秒 🎉</p>
     {% else %}
-        <p>今回のタイム: {{ current_time|format_duration }} 秒</p>
+        <p>今回のタイム: {{ typing_time|format_duration }} 秒</p>
         <p>最高タイム: {{ history.typing_time|format_duration }} 秒</p>
     {% endif %}
 
