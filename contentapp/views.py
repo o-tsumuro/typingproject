@@ -54,6 +54,7 @@ class MyPageView(generic.TemplateView):
 class TypingListView(generic.ListView):
     template_name = "typing_list.html"
     context_object_name = "typing_list"
+    paginate_by = 21
 
     def get_queryset(self):
         queryset = Content.objects.filter(is_public=True)

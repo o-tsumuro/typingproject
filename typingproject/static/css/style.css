@@ -348,3 +348,53 @@ footer {
     margin: 0 auto;
     padding: 20px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 30px 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.page-item.active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.page-link:hover:not(.active) {
+    background-color: #e9ecef;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-item:first-child .page-link,
+.page-item:last-child .page-link {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* アクティブなページのホバー効果を水色に変更 */
+.page-item.active .page-link:hover {
+    background-color: #87CEFA; /* 水色に変更 */
+    color: #333; /* テキストの色を濃い目に設定 */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
