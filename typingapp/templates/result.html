@@ -5,35 +5,68 @@
 {% block title %}result{% endblock %}
 
 {% block contents %}
+<div class="index-content">
+    <div class="typing-content">
+        <div id="title">
+            <p><strong>タイピング結果 : {{ history.title }} </strong></p>
+        </div>
 
-<div class="result-content">
-    <h2>タイピング結果</h2>
-
-    <p><strong>タイトル:</strong> {{ history.title }}</p>
-    <p><strong>文章:</strong> {{ history.title.sentence }}</p>
-
-    {% if is_best_time %}
-        <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ typing_time|format_duration }} 秒 🎉</p>
-    {% else %}
-        <p>今回のタイム: {{ typing_time|format_duration }} 秒</p>
-        <p>最高タイム: {{ history.typing_time|format_duration }} 秒</p>
-    {% endif %}
-
-    <div class="ranking_list">
-        <h2>ランキング</h2>
-        {% for ranking in ranking_list %}
-            <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}秒</li>
-        {% empty %}
-            <p>まだランキングがありません</p>
-        {% endfor %}
+        <div class="result-time">
+            {% if is_best_time %}
+                <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ typing_time|format_duration }} 🎉</p>
+            {% else %}
+                <p>今回のタイム: {{ typing_time|format_duration }} </p>
+                <p>最高タイム: {{ history.typing_time|format_duration }} </p>
+            {% endif %}
+        </div>
     </div>
 
-    <div class="content-list">
-        <h2>タイピングリスト</h2>
+    <div class="info-content">
+        <div class="detail-list">
+            <form method="post">
+                <p>
+                    <h2>detail</h2>
+                    タイトル : {{ history.title }}
+                    {% csrf_token %}
+                    {% if is_favorite %}
+                    <input type="hidden" name="action" value="delete_favorite">
+                    <button id="favorite-button" type="submit">★</button>
+                    {% else %}
+                    <input type="hidden" name="action" value="add_favorite">
+                    <button id="favorite-button" type="submit">☆</button>
+                    {% endif %}
+                    <br>
+                    作成者 : {{ history.title.user }}
+                    <br>
+                    作成日 : {{ history.title.created_at|date:"Y-m-j" }}
+                    <br>
+                    プレイ回数 : {{ hitory.title.play_count }}
+                </p>
+            </form>
+        </div>
+
+        <div class="ranking_list">
+            <h2>~ TOP10 ~</h2>
+            <ul>
+                {% for ranking in ranking_list|slice:":10" %}
+                    <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}</li>
+                {% empty %}
+                    <li>まだランキングがありません</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="content-list">
+    <h2>タイピングリスト</h2>
+    <ul>
         {% for content in content_list %}
         <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
         {% endfor %}
-    </div>
+    </ul>
 </div>
+
 
 {% endblock %}
