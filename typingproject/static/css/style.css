@@ -1,78 +1,230 @@
 /*正誤判定用css*/
-.correct { background-color: gray; }
-.incorrect { background-color: red; }
+.correct { background-color: rgb(103, 185, 167); }
+.incorrect { background-color: rgb(255, 131, 131); }
 #target-sentence { white-space: pre-wrap; display: inline-block; }
 
-html {
+* {
     margin: 0;
-    padding: 0
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0 15%;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Container for all content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header styles */
+header {
+    background-color: #f0f0f0;
+    padding: 10px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+header #user {
+    font-size: 14px;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+header ul li {
+    margin-left: 20px;
+}
+
+header ul li a,
+header ul li button#logout-button {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
     padding: 0;
 }
 
-/* header */
-header {
-    background-color: gray;
-    overflow: hidden;
+header ul li form {
+    display: flex;
+    align-items: center;
+}
 
-    #site-title {
-        padding: 2% 5%;
-        font-weight: bold;
-        font-size: 2.5rem;
-        float: left;
-        .menu {
-            float: left;
-        }
-    }
+header ul li input[type="text"] {
+    padding: 5px;
+    margin-right: 5px;
+}
 
-    #user {
-        text-align: right;
-        margin: 0 10%;
-        font-weight: bolder;
-        font-size: 120%;
-    }
+header ul li button[type="submit"] {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 
-    .menu {
-        list-style: none;
-        width: 100%;
-        margin-top: 2%;
-        padding: 0;
-        text-align: center;
-        font-size: large;
-        li, form {
-            display: inline;
-            margin-right: 1%;
-        }
-        #search {
-            margin: 0 5%;
-            input{
-                width: 20%;
-                padding: 0.7% 0;
-            }
-            button {
-                width: 5%;
-                padding: 0.5% 0;
-            }
-        }
-        #logout-button {
-            background-color: gray;
-            border: none;
-            font-size: 20px;
-        }
-        a {
-            text-decoration: none;
-            font-size: 20px;
-            color: black;
-        }
-        a, #logout-button {
-            transition: color 0.3s ease, opacity 0.3s ease;
-        }
-        a:hover, #logout-button:hover {
-            color: #3b3b3bdd;
-            opacity: 0.8;
-        }
-    }
+/* Main content area */
+#contents {
+    padding: 20px 0;
+}
+
+/* Footer styles */
+footer {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.index-content {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.typing-content {
+    flex: 7;
+}
+
+.info-content {
+    flex: 3;
+}
+
+/* Typing content styles */
+.typing-content #title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.typing-content #title #favorite-button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    padding: 0;
+    cursor: pointer;
+    color: #ffd700;
+    line-height: 1;
+    height: auto;
+}
+
+.typing-content #target-sentence,
+.typing-content #typing-input {
+    width: 100%;
+    min-height: 200px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    resize: none;
+    position: relative;
+}
+
+.typing-content #target-sentence {
+    background-color: #acacac;
+    font-size: 15px;
+    border-color: #3a3a3a;
+}
+
+#start-button {
+    display: inline;
+    padding: 5px 15px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1;
+    margin: 3px 0 5px 20px;
+}
+
+.typing-content #timer {
+    display: inline;
+    font-size: 18px;
+    margin: 0;
+}
+
+/* Info content styles */
+.info-content {
+    font-size: 14px;
+    padding-top: 54px;
+}
+
+.info-content .detail-list {
+    margin-bottom: 20px;
+}
+
+.detail-list, .ranking_list {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.info-content .ranking_list h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.info-content .ranking_list ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.detail-list button#favorite-button {
+    background: none;
+    border: none;
+    font-size: 15px;
+    padding: 0;
+    cursor: pointer;
+    color: #ffd700;
+}
+
+/* Content list styles */
+.content-list {
+    margin-top: 20px;
+}
+
+.content-list h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.content-list ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.content-list li {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.content-list a {
+    text-decoration: none;
+    color: #000;
 }
