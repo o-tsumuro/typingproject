@@ -118,7 +118,7 @@ footer {
     text-decoration: underline;
 }
 
-.typing-content #title #favorite-button {
+#favorite-button {
     background: none;
     border: none;
     font-size: 24px;
@@ -127,6 +127,16 @@ footer {
     color: #ffd700;
     line-height: 1;
     height: auto;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#favorite-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-content .detail-list #favorite-button {
+    font-size: 15px;
 }
 
 .typing-content #target-sentence,
@@ -205,15 +215,6 @@ footer {
     padding-left: 0;
 }
 
-.detail-list button#favorite-button {
-    background: none;
-    border: none;
-    font-size: 15px;
-    padding: 0;
-    cursor: pointer;
-    color: #ffd700;
-}
-
 /* Content list styles */
 .content-list {
     margin-top: 20px;
@@ -225,20 +226,125 @@ footer {
 }
 
 .content-list ul {
-    list-style-type: none;
-    padding-left: 0;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    list-style-type: none;
+    padding-left: 0;
 }
 
 .content-list li {
     background-color: #f0f0f0;
-    padding: 5px 10px;
     border-radius: 5px;
+    display: inline-block;
+    max-width: 250px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-list li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .content-list a {
     text-decoration: none;
     color: #000;
+    display: block;
+    padding: 5px 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Typing list page styles */
+#search_info {
+    margin-bottom: 20px;
+}
+
+#search_info form {
+    display: inline-block;
+}
+
+#search_info button {
+    padding: 4px 8px;
+    margin-left: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#category_form {
+    margin-bottom: 30px;
+}
+
+#category_form label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+#category_form button {
+    padding: 6px 12px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+#category_form button[style*="background-color: skyblue"] {
+    background-color: #87CEEB;
+    color: #fff;
+    border-color: #87CEEB;
+}
+
+#category_form button:hover {
+    background-color: #f0f0f0;
+}
+
+#category_form button[style*="background-color: skyblue"]:hover {
+    background-color: #7ab8d1;
+}
+
+/* Typing list styles */
+.list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.list li {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list li a {
+    display: block;
+    padding: 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Container for consistent spacing */
+#contents {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }

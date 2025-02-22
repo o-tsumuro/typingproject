@@ -37,7 +37,7 @@
 
 <ul class="list">
     {% for typing in typing_list %}
-        <li><a href="{% url 'typingapp:typing' typing.pk %}">{{ typing.title|truncatechars:20 }}</a></li>
+        <li><a href="{% url 'typingapp:typing' typing.pk %}">{{ typing.title }}</a></li>
     {% endfor %}
 </ul>
 
