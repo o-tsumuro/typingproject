@@ -51,8 +51,6 @@ class IndexView(generic.DetailView):
 
         history = History(user=request.user, title=content, typing_time=typing_time)
         existing_history = History.objects.filter(user=request.user, title=content).first()
-        # if existing_history:
-        #     result_page_pk = existing_history.pk
 
         if existing_history:
             result_page_pk = existing_history.pk
