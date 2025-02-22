@@ -156,6 +156,10 @@ footer {
     font-size: 18px;
     resize: none;
     position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .typing-content #target-sentence {
