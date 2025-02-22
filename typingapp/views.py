@@ -100,7 +100,7 @@ class ResultView(generic.DetailView):
 class GuestResultView(generic.DetailView):
     model = Content
     template_name = "guest_result.html"
-    context_object_name = "content"
+    context_object_name = "content_object"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -19,6 +19,9 @@
                 <p>最高タイム: {{ history.typing_time|format_duration }} </p>
             {% endif %}
         </div>
+        <div id="result-comment">
+            <a href="{% url "typingapp:typing" history.title.pk %}">->もう一度プレイする</a>
+        </div>
     </div>
 
     <div class="info-content">
