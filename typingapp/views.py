@@ -26,7 +26,7 @@ class IndexView(generic.DetailView):
         else:
             is_favorite = False
         context['is_favorite'] = is_favorite
-        context['content_list'] = Content.objects.filter(is_public=True).order_by('-play_count')
+        context['content_list'] = Content.objects.filter(is_public=True).order_by('?')
         context['ranking_list'] = History.objects.filter(title__title=self.object.title).order_by("typing_time")
         return context
 
