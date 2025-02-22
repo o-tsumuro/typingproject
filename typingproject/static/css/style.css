@@ -18,7 +18,7 @@ body {
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 15px;
 }
 
 /* Header styles */
@@ -78,7 +78,14 @@ header ul li button[type="submit"] {
     background-color: #007bff;
     color: white;
     border: none;
+    border-radius: 3px;
     cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+header ul li button[type="submit"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 /* Main content area */
@@ -168,6 +175,12 @@ footer {
     cursor: pointer;
     z-index: 1;
     margin: 3px 0 5px 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#start-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .typing-content #timer {
@@ -344,7 +357,7 @@ footer {
 
 /* Container for consistent spacing */
 #contents {
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 20px;
 }
