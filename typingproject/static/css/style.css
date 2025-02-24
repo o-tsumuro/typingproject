@@ -14,14 +14,14 @@ body {
     line-height: 1.6;
 }
 
-/* Container for all content */
+/* << ベースのスタイル */
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 15px;
 }
 
-/* Header styles */
+
 header {
     background-color: #f0f0f0;
     padding: 10px 0;
@@ -95,12 +95,10 @@ header ul li #search-button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Main content area */
 #contents {
-    padding: 50px 0;
+    padding: 25px 0;
 }
 
-/* Footer styles */
 footer {
     background-color: #f0f0f0;
     text-align: center;
@@ -121,8 +119,9 @@ footer {
 .info-content {
     flex: 2.5;
 }
+/* ベースのスタイル >> */
 
-/* Typing content styles */
+/* << タイピングページのスタイル */
 .typing-content #title {
     font-size: 24px;
     margin-bottom: 15px;
@@ -187,8 +186,9 @@ footer {
     font-size: 18px;
     margin: 0;
 }
+/* タイピングページのスタイル >> */
 
-/* Result - page styles */
+/* << リザルトページのスタイル */
 .result-time {
     font-size: 30px;
     text-align: center;
@@ -200,8 +200,9 @@ footer {
     position: absolute;
     top:350px;
 }
+/* リザルトページのスタイル >> */
 
-/* Info content styles */
+/* << 詳細エリアのスタイル */
 .info-content {
     font-size: 14px;
     padding-top: 54px;
@@ -226,8 +227,9 @@ footer {
     list-style-type: none;
     padding-left: 0;
 }
+/* 詳細エリアのスタイル >> */
 
-/* Content list styles */
+/* << ページ下部リストのスタイル */
 .content-list {
     margin-top: 20px;
 }
@@ -267,8 +269,9 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* ページ下部リストのスタイル >> */
 
-/* Typing list page styles */
+/* << タイピングリストのスタイル */
 #search_info {
     margin-bottom: 20px;
 }
@@ -322,7 +325,6 @@ footer {
     background-color: #7ab8d1;
 }
 
-/* Typing list styles */
 .list {
     list-style: none;
     padding: 0;
@@ -353,14 +355,9 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+/* タイピングリストのスタイル >> */
 
-/* Container for consistent spacing */
-#contents {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
+/* << ページネーションのスタイル */
 .pagination {
     display: flex;
     justify-content: center;
@@ -403,15 +400,15 @@ footer {
     line-height: 1;
 }
 
-/* アクティブなページのホバー効果を水色に変更 */
 .page-item.active .page-link:hover {
     background-color: #87CEFA;
     color: #333;
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+/* ページネーションのスタイル >> */
 
-/* 認証ページ共通のスタイル */
+/* << 認証ページ共通のスタイル */
 .auth-container {
     max-width: 400px;
     margin: 40px auto;
@@ -483,7 +480,9 @@ footer {
     color: #0056b3;
     text-decoration: underline;
 }
+/* 認証ページ共通のスタイル >> */
 
+/* << エラーメッセージのスタイル */
 .error-message {
     color: #dc3545;
     background-color: #f8d7da;
@@ -502,6 +501,7 @@ footer {
 .error-message li {
     margin-bottom: 5px;
 }
+/* エラーメッセージのスタイル >> */
 
 /* 文章作成ページのスタイル */
 .content-creation {
@@ -582,8 +582,9 @@ footer {
     background-color: #357abd;
     transform: translateY(-2px);
 }
+/* 文章作成ページのスタイル >> */
 
-/* マイページのスタイル */
+/* << マイページのスタイル */
 .mypage-list {
     display: flex;
     justify-content: space-between;
