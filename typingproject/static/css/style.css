@@ -508,3 +508,83 @@ footer {
 .error-message li {
     margin-bottom: 5px;
 }
+
+/* 文章作成ページのスタイル */
+.content-creation {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.content-creation h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+.content-creation form {
+    display: grid;
+    gap: 20px;
+}
+
+.content-creation label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.content-creation input[type="text"],
+.content-creation textarea,
+.content-creation select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-creation input[type="text"]:focus,
+.content-creation textarea:focus,
+.content-creation select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.content-creation textarea {
+    min-height: 200px;
+    resize: vertical;
+}
+
+.content-creation .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-creation input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.content-creation button[type="submit"] {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.content-creation button[type="submit"]:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+}
