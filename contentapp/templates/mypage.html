@@ -6,60 +6,70 @@
 
 {% block contents %}
 
-    <div class="mypage-list">
-        <div class="left-list">
-            <h1>お気に入りリスト</h1>
-            {% for favorite in my_favorite_list %}
-                <form method="post">
-                    {% csrf_token %}
-                    <li>
-                        <a href="{% url "typingapp:typing" favorite.title.pk %}">{{ favorite.title|truncatechars:9 }}</a>
-                        <input type="hidden" name="action" value="del_favorite">
-                        <input type="hidden" name="pk" value="{{ favorite.pk }}">
-                        <input type="submit" value="お気に入り削除">
-                    </li>
-                </form>
-            {% empty %}
-                <p>お気に入りが登録されていません</p>
-            {% endfor %}
-        </div>
-
-        <div class="center-list">
-            <h1>タイピング履歴</h1>
-            {% for history in my_history_list %}
-                <li><a href="{% url "typingapp:typing" history.title.pk %}">{{ history.title|truncatechars:9 }}</a> - {{ history.typing_time|format_duration }}秒</li>
-            {% empty %}
-                <p>タイピング履歴が存在しません</p>
-            {% endfor %}
-        </div>
-
-        <div class="right-list">
-            <h1>作成した文章</h1>
-            {% for content in my_content_list %}
-                <form method="post">
-                    {% csrf_token %}
-                    <li>
-                        <a href="{% url "typingapp:typing" content.pk %}">{{ content.title|truncatechars:9 }}</a>
-                        <input type="hidden" name="pk" value="{{ content.pk }}">
-                        {% if content.is_public %}
-                            <input type="hidden" name="action" value="set_private" style="border: 0.5px solid black">
-                            <div id="public_button">
-                                <button type="submit" style="background-color: skyblue; color: #222222; border: 0.5px solid black" disabled>公開</butto>
-                                <button type="submit">非公開</button>
-                            </div>
-                        {% else %}
-                            <input type="hidden" name="action" value="set_public" style="border: 0.5px solid black">
-                            <div id="public_button">
-                                <button type="submit">公開</butto>
-                                <button type="submit" style="background-color: skyblue; color: #222222; border: 0.5px solid black;" disabled>非公開</button>
-                            </div>
-                        {% endif %}
-                    </li>
-                </form>
-            {% empty %}
-                <p>作成した文章が存在しません</p>
-            {% endfor %}
-        </div>
+<div class="mypage-list">
+    <div class="left-list">
+        <h1>お気に入りリスト</h1>
+        {% for favorite in my_favorite_list %}
+            <form method="post">
+                {% csrf_token %}
+                <li>
+                    <a href="{% url "typingapp:typing" favorite.title.pk %}" title="{{ favorite.title }}">{{ favorite.title }}</a>
+                    <input type="hidden" name="action" value="del_favorite">
+                    <input type="hidden" name="pk" value="{{ favorite.pk }}">
+                    <button type="submit" class="favorite-delete-btn" title="お気に入りから削除">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                        </svg>
+                    </button>
+                </li>
+            </form>
+        {% empty %}
+            <p>お気に入りが登録されていません</p>
+        {% endfor %}
     </div>
+
+    <div class="center-list">
+        <h1>タイピング履歴</h1>
+        {% for history in my_history_list %}
+            <li>
+                <a href="{% url "typingapp:typing" history.title.pk %}" title="{{ history.title }}">{{ history.title }}</a>
+                <span class="typing-time">{{ history.typing_time|format_duration }}</span>
+            </li>
+        {% empty %}
+            <p>タイピング履歴が存在しません</p>
+        {% endfor %}
+    </div>
+
+    <div class="right-list">
+        <h1>作成した文章</h1>
+        {% for content in my_content_list %}
+            <form method="post">
+                {% csrf_token %}
+                <li>
+                    <a href="{% url "typingapp:typing" content.pk %}" title="{{ content.title }}">{{ content.title }}</a>
+                    <input type="hidden" name="pk" value="{{ content.pk }}">
+                    {% if content.is_public %}
+                        <input type="hidden" name="action" value="set_private">
+                        <div id="public_button">
+                            <button type="button" disabled>公開</button>
+                            <button type="submit">非公開</button>
+                        </div>
+                    {% else %}
+                        <input type="hidden" name="action" value="set_public">
+                        <div id="public_button">
+                            <button type="submit">公開</button>
+                            <button type="button" disabled>非公開</button>
+                        </div>
+                    {% endif %}
+                </li>
+            </form>
+        {% empty %}
+            <p>作成した文章が存在しません</p>
+        {% endfor %}
+    </div>
+</div>
     
 {% endblock %}
