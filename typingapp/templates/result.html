@@ -32,11 +32,19 @@
                     タイトル : {{ history.title }}
                     {% csrf_token %}
                     {% if is_favorite %}
-                    <input type="hidden" name="action" value="delete_favorite">
-                    <button id="favorite-button" type="submit">★</button>
+                        <input type="hidden" name="action" value="delete_favorite">
+                        <button type="submit" id="favorite-button" class="favorite-delete-btn" title="お気に入りから削除">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </button>
                     {% else %}
-                    <input type="hidden" name="action" value="add_favorite">
-                    <button id="favorite-button" type="submit">☆</button>
+                        <input type="hidden" name="action" value="add_favorite">
+                        <button type="submit" id="favorite-button" class="favorite-add-btn" title="お気に入り登録">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                        </button>
                     {% endif %}
                     <br>
                     作成者 : {{ history.title.user }}
