@@ -5,56 +5,49 @@
 {% block title %}guest_result{% endblock %}
 
 {% block contents %}
-<div class="index-content">
-    <div class="typing-content">
-        <div id="title">
-            <p><strong>タイピング結果 : {{ content_object.title }} </strong></p>
-        </div>
-
+<div class="result-container">
+    <div class="result-content">
+        
         <div class="result-info">
-            <p>今回のタイム : {{ typing_time|format_duration }}</p>
+            <h1 class="result-title">タイピング結果: {{ content_object.title }}</h1>
+            <p>今回のタイム: {{ typing_time|format_duration }}</p>
             <div id="result-comment">
-                <a href="{% url "typingapp:typing" content_object.pk %}">->もう一度プレイする</a>
                 <p>※タイムの保存、ランキングの登録はログインが必要です。</p>
-                <a href="{% url "accounts:login" %}"> ->ログインはこちら </a>
+                <a href="{% url "accounts:login" %}">→ ログインはこちら</a><br>
+                <a href="{% url "typingapp:typing" content_object.pk %}">→ もう一度プレイする</a>
             </div>
         </div>
-    </div>
 
-    <div class="info-content">
-        <div class="detail-list">
-            <form method="post">
-                <p>
-                    <h2>detail</h2>
-                    タイトル : {{ content_object.title }}
-                        <button type="submit" id="favorite-button" class="favorite-add-btn" title="お気に入り登録(ログインが必要)" disabled>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </button>
-                    <br>
-                    作成者 : {{ content_object.user }}
-                    <br>
-                    作成日 : {{ content_object.created_at|date:"Y-m-j" }}
-                    <br>
-                    プレイ回数 : {{ content_object.play_count }}
-                </p>
-            </form>
-        </div>
-
-        <div class="ranking_list">
+        <div class="ranking-list">
             <h2>~ TOP10 ~</h2>
             <ul>
                 {% for ranking in ranking_list|slice:":10" %}
-                    <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}</li>
+                    <li>{{ forloop.counter }}位: {{ ranking.user }} - {{ ranking.typing_time|format_duration }}</li>
                 {% empty %}
                     <li>まだランキングがありません</li>
                 {% endfor %}
             </ul>
         </div>
     </div>
-</div>
 
+    <div class="side-content">
+        <div class="detail-list">
+            <h2>詳細情報</h2>
+            <p>
+                タイトル: {{ content_object.title }}
+                <button type="submit" id="favorite-button" class="favorite-add-btn" title="お気に入り登録(ログインが必要)" disabled>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </button>
+                <br>
+                作成者: {{ content_object.user }}<br>
+                作成日: {{ content_object.created_at|date:"Y-m-j" }}<br>
+                プレイ回数: {{ content_object.play_count }}
+            </p>
+        </div>
+    </div>
+</div>
 
 <div class="content-list">
     <h2>タイピングリスト</h2>
@@ -64,5 +57,4 @@
         {% endfor %}
     </ul>
 </div>
-
 {% endblock %}

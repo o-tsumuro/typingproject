@@ -195,14 +195,105 @@ footer {
 /* タイピングページのスタイル >> */
 
 /* << リザルトページのスタイル */
+.result-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.result-content {
+    flex: 1 1 60%;
+    min-width: 300px;
+}
+
+.side-content {
+    flex: 1 1 30%;
+    min-width: 250px;
+}
+
+.result-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 .result-info {
-    font-size: 26px;
-    position: absolute;
-    top: 200px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.result-info p {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 #result-comment {
-    font-size: 18px;
+    font-size: 16px;
+    text-align: right;
+    margin-top: 15px;
+}
+
+.ranking-list {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ranking-list h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ranking-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.ranking-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+}
+
+.ranking-list li:last-child {
+    border-bottom: none;
+}
+
+.detail-list {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.detail-list h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.detail-list p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .result-container {
+        flex-direction: column;
+    }
+    
+    .side-content {
+        order: -1;
+    }
 }
 /* リザルトページのスタイル >> */
 
@@ -507,7 +598,7 @@ footer {
 }
 /* エラーメッセージのスタイル >> */
 
-/* 文章作成ページのスタイル */
+/* << 文章作成ページのスタイル */
 .content-creation {
     max-width: 800px;
     margin: 40px auto;
@@ -671,7 +762,7 @@ footer {
     text-decoration: underline;
 }
 
-/* お気に入り削除ボタンのスタイル */
+/* << 各ボタンのスタイル */
 .favorite-delete-btn, .favorite-add-btn {
     background: none;
     border: none;
@@ -727,7 +818,6 @@ footer {
     position: relative;
 }
 
-/* 選択中の公開/非公開ボタンのスタイル */
 #public-button button:disabled {
     background-color: #87CEFA;
     color: #222222;
@@ -749,7 +839,6 @@ footer {
     opacity: 1;
 }
 
-/* 文章削除ボタンのスタイル */
 .content-delete-btn {
     background-color: #ff6565;
     color: white;
@@ -774,6 +863,7 @@ footer {
     width: 16px;
     height: 16px;
 }
+/* 各ボタンのスタイル >> */
 
 /* 作成した文章のリストアイテムのスタイル調整 */
 .right-list li {
