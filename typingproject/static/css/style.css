@@ -900,34 +900,35 @@ footer {
 
 .auth-section {
     flex: 3;
+    margin-top: 150px;
 }
 
-h1 {
+.site-details h1 {
     font-size: 2.5em;
     color: #333;
     margin-bottom: 20px;
 }
 
-h2 {
+.site-details h2 {
     font-size: 1.8em;
     color: #444;
     margin-top: 30px;
     margin-bottom: 15px;
 }
 
-p {
+.site-details p {
     font-size: 1em;
     line-height: 1.6;
     margin-bottom: 15px;
 }
 
-ul {
+.site-details ul {
     list-style-type: disc;
     margin-left: 20px;
     margin-bottom: 15px;
 }
 
-li {
+.site-details ul li {
     margin-bottom: 10px;
 }
 
