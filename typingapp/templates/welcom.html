@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Typing Practice{% endblock %}
+
+{% block contents %}
+<div class="top-container">
+    <section class="site-details">
+        <h1>タイピング練習サイトへようこそ</h1>
+        
+        <h2>サイトの概要</h2>
+        <p>当サイトでは、タイピングの練習を楽しく効果的に行うことができます。様々な文章を用意しているだけでなく、自分で新しい文章を作成することもできるので、飽きずに自分のペースで練習を続けられます。</p>
+
+        <p>気に入った文章はお気に入りに登録でき、いつでも簡単にアクセスできます。また、各文章に対する自己ベストタイムを記録し、確認することができるので、自分の上達具合を把握しやすくなっています。</p>
+
+        <p>自作の文章は公開・非公開を選択できるので、個人的な練習用の文章から、他のユーザーと共有したい文章まで、柔軟に管理できます。</p>
+
+        <p>タイピング時間のランキング機能もあり、他のユーザーとスキルを競い合うこともできます。</p>
+
+        <h2>ログイン後に利用可能な機能</h2>
+        <p>ログインすることで、以下の機能が利用可能になります：</p>
+        <ul>
+            <li>文章の作成</li>
+            <li>お気に入り機能</li>
+            <li>ベストタイムの保存</li>
+            <li>ランキングへの登録</li>
+        </ul>
+    </section>
+
+    <aside class="auth-section">
+        <div class="auth-box">
+            <h2>アカウントをお持ちの方</h2>
+            <a href="{% url 'accounts:login' %}" class="btn btn-primary">ログイン</a>
+        </div>
+        <div class="auth-box">
+            <h2>はじめての方</h2>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-secondary">新規登録</a>
+        </div>
+        <div class="auth-box">
+            <h2>ログインせずに始める</h2>
+            <a href="{% url 'contentapp:typing_list' %}" class="btn btn-tertiary">タイピング練習を始める</a>
+        </div>
+    </aside>
+</div>
+
+<div class="content-list">
+    <h2>おすすめのタイピング</h2>
+    <ul>
+        {% for content in content_list|slice:":22" %}
+        <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}
