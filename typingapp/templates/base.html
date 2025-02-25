@@ -22,6 +22,7 @@
                     </form>
                 </li>
                 <li><a href="{% url "typingapp:index" %}">トップ</a></li>
+                <li><a href="{% url "typingapp:randomTyping" %}" title="ランダムにタイピングを選ぶ">ランダム</a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url "contentapp:create_content" %}">文章作成</a></li>
                     <li><a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a></li>
