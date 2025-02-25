@@ -16,15 +16,13 @@
                     {{ content_object.title }}
                     {% csrf_token %}
                     {% if is_favorite %}
-                        <input type="hidden" name="action" value="delete_favorite">
-                        <button type="submit" id="favorite-button" class="favorite-delete-btn" title="お気に入りから削除">
+                        <button type="submit" id="favorite-button" class="favorite-delete-btn" name="action" value="delete_favorite" title="お気に入りから削除">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
                         </button>
                     {% else %}
-                        <input type="hidden" name="action" value="add_favorite">
-                        <button type="submit" id="favorite-button" class="favorite-add-btn" title="お気に入り登録">
+                        <button type="submit" id="favorite-button" class="favorite-add-btn" name="action" value="add_favorite" title="お気に入り登録">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
@@ -46,15 +44,13 @@
                     タイトル : {{ content_object.title }}
                     {% csrf_token %}
                     {% if is_favorite %}
-                        <input type="hidden" name="action" value="delete_favorite">
-                        <button type="submit" id="favorite-button" class="favorite-delete-btn" title="お気に入りから削除">
+                        <button type="submit" id="favorite-button" class="favorite-delete-btn" name="action" value="delete_favorite" title="お気に入りから削除">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
                         </button>
                     {% else %}
-                        <input type="hidden" name="action" value="add_favorite">
-                        <button type="submit" id="favorite-button" class="favorite-add-btn" title="お気に入り登録">
+                        <button type="submit" id="favorite-button" class="favorite-add-btn" name="action" value="add_favorite" title="お気に入り登録">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
@@ -84,9 +80,9 @@
 </div>
 
 <div class="content-list">
-    <h2>タイピングリスト</h2>
+    <h2>おすすめのタイピング</h2>
     <ul>
-        {% for content in content_list|slice:":30" %}
+        {% for content in content_list|slice:":22" %}
         <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title}}</a></li>
         {% endfor %}
     </ul>
