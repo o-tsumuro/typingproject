@@ -1,102 +1,45 @@
 {% extends "base.html" %}
 
-{% load custom_filters %}
-{% load static %}
-
-{% block title %}index{% endblock  %}
+{% block title %}Welcome to Typing Practice{% endblock %}
 
 {% block contents %}
+<div class="top-container">
+    <section class="site-details">
+        <h1>タイピング練習サイトへようこそ</h1>
+        
+        <h2>サイトの概要</h2>
+        <p>当サイトでは、タイピングの練習を楽しく効果的に行うことができます。様々な文章を用意しているだけでなく、自分で新しい文章を作成することもできるので、飽きずに自分のペースで練習を続けられます。</p>
 
+        <p>気に入った文章はお気に入りに登録でき、いつでも簡単にアクセスできます。また、各文章に対する自己ベストタイムを記録し、確認することができるので、自分の上達具合を把握しやすくなっています。</p>
 
-<div class="index-content">
-    <div class="typing-content">
-        <div id="title">
-            <form method="POST">
-                <p>
-                    {{ content_object.title }}
-                    {% csrf_token %}
-                    {% if user.is_authenticated %}
-                        {% if is_favorite %}
-                            <button type="submit" id="favorite-button" class="favorite-delete-btn" name="action" value="delete_favorite" title="お気に入り削除">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                </svg>
-                            </button>
-                        {% else %}
-                            <button type="submit" id="favorite-button" class="favorite-add-btn" name="action" value="add_favorite" title="お気に入り登録">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                </svg>
-                            </button>
-                        {% endif %}
-                    {% else %}
-                        <button type="submit" id="favorite-button" class="favorite-add-btn" title="お気に入り登録(ログインが必要)" disabled>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </button>
-                    {% endif %}
-                </p>
-            </form>
-        </div>
-        <div id="target-sentence">{{ content_object.sentence }}</div>
-        <div id="timer">タイム： 00:00</div>
-        <button id="start-button">スタート</button>
-        <textarea id="typing-input" disabled></textarea>
-    </div>
-    <div class="info-content">
-        <div class="detail-list">
-            <form method="post">
-                <p>
-                    <h2>詳細情報</h2>
-                    タイトル : {{ content_object.title }}
-                    {% csrf_token %}
-                    {% if user.is_authenticated %}
-                        {% if is_favorite %}
-                            <button type="submit" id="favorite-button" class="favorite-delete-btn" name="action" value="delete_favorite" title="お気に入り削除">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                </svg>
-                            </button>
-                        {% else %}
-                            <button type="submit" id="favorite-button" class="favorite-add-btn" name="action" value="add_favorite" title="お気に入り登録">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                </svg>
-                            </button>
-                        {% endif %}
-                    {% else %}
-                        <button type="submit" id="favorite-button" class="favorite-add-btn" title="お気に入り登録(ログインが必要)" disabled>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </button>
-                    {% endif %}
-                    <br>
-                    作成者 : {{ content_object.user }}
-                    <br>
-                    作成日 : {{ content_object.created_at|date:"Y-m-j" }}
-                    <br>
-                    プレイ回数 : {{ content_object.play_count }}
-                </p>
-            </form>
-        </div>
+        <p>自作の文章は公開・非公開を選択できるので、個人的な練習用の文章から、他のユーザーと共有したい文章まで、柔軟に管理できます。</p>
 
-        <div class="ranking_list">
-            <h2>~ TOP10 ~</h2>
-            <ul>
-                {% for ranking in ranking_list|slice:":10" %}
-                    {% if ranking.user == request.user %}
-                        <li style="color: green; text-decoration: underline;">{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}</li>
-                    {% else %}
-                        <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}</li>
-                    {% endif %}
-                {% empty %}
-                    <li>まだランキングがありません</li>
-                {% endfor %}
-            </ul>
+        <p>タイピング時間のランキング機能もあり、他のユーザーとスキルを競い合うこともできます。</p>
+
+        <h2>ログイン後に利用可能な機能</h2>
+        <p>ログインすることで、以下の機能が利用可能になります：</p>
+        <ul>
+            <li>文章の作成</li>
+            <li>お気に入り機能</li>
+            <li>ベストタイムの保存</li>
+            <li>ランキングへの登録</li>
+        </ul>
+    </section>
+
+    <aside class="auth-section">
+        <div class="auth-box">
+            <h2>アカウントをお持ちの方</h2>
+            <a href="{% url 'accounts:login' %}" class="btn btn-primary">ログイン</a>
         </div>
-    </div>
+        <div class="auth-box">
+            <h2>はじめての方</h2>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-secondary">新規登録</a>
+        </div>
+        <div class="auth-box">
+            <h2>ログインせずに始める</h2>
+            <a href="{% url 'contentapp:typing_list' %}" class="btn btn-tertiary">タイピング練習を始める</a>
+        </div>
+    </aside>
 </div>
 
 <div class="content-list">
@@ -108,17 +51,4 @@
     </ul>
 </div>
 
-
-<form id="typing_form" method="POST">
-    {% csrf_token %}
-    <input type="hidden" id="typing_time" name="typing_time">
-    {% if user.is_authenticated %}
-        <input type="hidden" name="action" value="save_history">
-    {% else %}
-        <input type="hidden" name="action" value="guest_result">
-    {% endif %}
-</form>
-
-<script type="module" src="{% static 'js/main.js' %}"></script>
-
-{% endblock  %}
+{% endblock %}

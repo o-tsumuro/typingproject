@@ -4,14 +4,14 @@ from django.db.models import F
 from .models import History, Favorite
 from contentapp.models import Content
 
-class TopPageView(generic.ListView):
-    template_name = "welcom.html"
+class IndexView(generic.ListView):
+    template_name = "index.html"
     context_object_name = "content_list"
     queryset = Content.objects.filter(is_public=True).order_by("?")
 
-class IndexView(generic.DetailView):
+class TypingView(generic.DetailView):
     model = Content
-    template_name = "index.html"
+    template_name = "typing.html"
     context_object_name = "content_object"
 
     def get_context_data(self, **kwargs):
