@@ -9,6 +9,10 @@ class IndexView(generic.ListView):
     context_object_name = "content_list"
     queryset = Content.objects.filter(is_public=True).order_by("?")
 
+def randomTypingView(request):
+    pk = Content.objects.order_by("?").first().pk
+    return redirect("typingapp:typing", pk=pk)
+
 class TypingView(generic.DetailView):
     model = Content
     template_name = "typing.html"

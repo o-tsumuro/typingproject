@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:pk>/', views.TypingView.as_view(), name='typing'),
     path('result/<int:pk>/<int:typing_time>/', views.ResultView.as_view(), name='result'),
     path('guest_result/<int:pk>/<int:typing_time>', views.GuestResultView.as_view(), name='guest_result'),
+    path('randomTyping/', views.randomTypingView, name="randomTyping"),
 ]
