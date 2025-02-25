@@ -63,6 +63,9 @@ class IndexView(generic.DetailView):
     def guest_result(self, request, *args, **kwargs):
         typing_time = int(request.POST.get('typing_time'))
         pk = self.kwargs['pk']
+
+        Content.objects.filter(pk=pk).update(play_count=F("play_count") + 1)
+
         return redirect("typingapp:guest_result", pk=pk, typing_time=typing_time)
 
     
@@ -99,7 +102,7 @@ class ResultView(generic.DetailView):
         context["typing_time"] = int(typing_time)
         context["is_best_time"] = typing_time == self.object.typing_time
         context['ranking_list'] = History.objects.filter(title__title=self.object.title).order_by("typing_time")
-        context['content_list'] = Content.objects.filter(is_public=True).order_by('-play_count')
+        context['content_list'] = Content.objects.filter(is_public=True).order_by('?')
         return context
     
     def post(self, request, *args, **kwargs):
@@ -135,5 +138,5 @@ class GuestResultView(generic.DetailView):
         typing_time = self.kwargs.get("typing_time")
         context['typing_time'] = int(typing_time)
         context['ranking_list'] = History.objects.filter(title__title=self.object.title).order_by("typing_time")
-        context['content_list'] = Content.objects.filter(is_public=True).order_by("-play_count")
+        context['content_list'] = Content.objects.filter(is_public=True).order_by("?")
         return context
