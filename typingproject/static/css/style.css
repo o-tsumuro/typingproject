@@ -167,6 +167,10 @@ footer {
     border-color: #3a3a3a;
 }
 
+.typing-content #typing-input:focus {
+    outline: 1px solid #2e2e2e;
+}
+
 #start-button {
     display: inline;
     padding: 5px 15px;
