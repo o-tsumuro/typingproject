@@ -195,16 +195,14 @@ footer {
 /* タイピングページのスタイル >> */
 
 /* << リザルトページのスタイル */
-.result-time {
-    font-size: 30px;
-    text-align: center;
+.result-info {
+    font-size: 26px;
     position: absolute;
     top: 200px;
 }
 
 #result-comment {
-    position: absolute;
-    top:350px;
+    font-size: 18px;
 }
 /* リザルトページのスタイル >> */
 

@@ -11,13 +11,13 @@
             <p><strong>タイピング結果 : {{ content_object.title }} </strong></p>
         </div>
 
-        <div class="result-time">
-                <p>今回のタイム : {{ typing_time|format_duration }}</p>
-        </div>
-        <div id="result-comment">
-            <a href="{% url "typingapp:typing" content_object.pk %}">->もう一度プレイする</a>
-            <p>※タイピングタイムの保存はログインユーザーのみ利用できます。</p>
-            <a href="{% url "accounts:login" %}"> ->ログインはこちら </a>
+        <div class="result-info">
+            <p>今回のタイム : {{ typing_time|format_duration }}</p>
+            <div id="result-comment">
+                <a href="{% url "typingapp:typing" content_object.pk %}">->もう一度プレイする</a>
+                <p>※タイムの保存、ランキングの登録はログインが必要です。</p>
+                <a href="{% url "accounts:login" %}"> ->ログインはこちら </a>
+            </div>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
 <div class="content-list">
     <h2>タイピングリスト</h2>
     <ul>
-        {% for content in content_list %}
+        {% for content in content_list|slice:":22" %}
         <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
         {% endfor %}
     </ul>

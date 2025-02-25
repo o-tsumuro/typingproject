@@ -11,16 +11,16 @@
             <p><strong>タイピング結果 : {{ history.title }} </strong></p>
         </div>
 
-        <div class="result-time">
+        <div class="result-info">
             {% if is_best_time %}
                 <p style="color: green; font-weight: bold;">🎉 最高タイムです！ {{ typing_time|format_duration }} 🎉</p>
             {% else %}
                 <p>今回のタイム: {{ typing_time|format_duration }} </p>
                 <p>最高タイム: {{ history.typing_time|format_duration }} </p>
             {% endif %}
-        </div>
-        <div id="result-comment">
-            <a href="{% url "typingapp:typing" history.title.pk %}">->もう一度プレイする</a>
+            <div id="result-comment">
+                <a href="{% url "typingapp:typing" history.title.pk %}">->もう一度プレイする</a>
+            </div>
         </div>
     </div>
 
@@ -51,7 +51,7 @@
                     <br>
                     作成日 : {{ history.title.created_at|date:"Y-m-j" }}
                     <br>
-                    プレイ回数 : {{ hitory.title.play_count }}
+                    プレイ回数 : {{ history.title.play_count }}
                 </p>
             </form>
         </div>
@@ -73,7 +73,7 @@
 <div class="content-list">
     <h2>おすすめのタイピング</h2>
     <ul>
-        {% for content in content_list %}
+        {% for content in content_list|slice:":22" %}
         <li><a href="{% url "typingapp:typing" content.pk %}">{{ content.title }}</a></li>
         {% endfor %}
     </ul>
