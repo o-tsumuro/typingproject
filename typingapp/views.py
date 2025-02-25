@@ -13,10 +13,6 @@ class IndexView(generic.DetailView):
     template_name = "index.html"
     context_object_name = "content_object"
 
-    def get_object(self, queryset=None):
-        pk = self.kwargs.get("pk", 1)
-        return Content.objects.get(pk=pk)
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         pk = self.kwargs['pk']
@@ -91,11 +87,43 @@ class ResultView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         typing_time = self.kwargs.get("typing_time")
+        pk = self.kwargs['pk']
+        history = History.objects.get(pk=pk)
+
+        if self.request.user.is_authenticated:
+            is_favorite = Favorite.objects.filter(user=self.request.user, title=history.title).exists()
+        else:
+            is_favorite = False
+
+        context['is_favorite'] = is_favorite
         context["typing_time"] = int(typing_time)
         context["is_best_time"] = typing_time == self.object.typing_time
         context['ranking_list'] = History.objects.filter(title__title=self.object.title).order_by("typing_time")
         context['content_list'] = Content.objects.filter(is_public=True).order_by('-play_count')
         return context
+    
+    def post(self, request, *args, **kwargs):
+        action = request.POST.get("action")
+
+        if action == "add_favorite":
+            return self.add_favorite(request, *args, **kwargs)
+        elif action == "delete_favorite":
+            return self.delete_favorite(request, *args, **kwargs)
+        
+    def add_favorite(self, request, *args, **kwargs):
+        pk = self.kwargs['pk']
+        typing_time = self.kwargs['typing_time']
+        history = History.objects.get(pk=pk)
+        favorite = Favorite(user=request.user, title=history.title)
+        favorite.save()
+        return redirect("typingapp:result", pk=pk, typing_time=typing_time)
+    
+    def delete_favorite(self, request, *args, **kwargs):
+        pk = self.kwargs['pk']
+        typing_time = self.kwargs['typing_time']
+        history = History.objects.get(pk=pk)
+        Favorite.objects.filter(user=request.user, title=history.title).delete()
+        return redirect("typingapp:result", pk=pk, typing_time=typing_time)
     
 class GuestResultView(generic.DetailView):
     model = Content
