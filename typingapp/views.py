@@ -4,9 +4,10 @@ from django.db.models import F
 from .models import History, Favorite
 from contentapp.models import Content
 
-def first_view(request):
-    pk = Content.objects.order_by("pk").first().pk
-    return redirect("typingapp:typing", pk=pk)
+class TopPageView(generic.ListView):
+    template_name = "welcom.html"
+    context_object_name = "content_list"
+    queryset = Content.objects.filter(is_public=True).order_by("?")
 
 class IndexView(generic.DetailView):
     model = Content
