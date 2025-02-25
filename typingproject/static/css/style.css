@@ -95,6 +95,12 @@ header ul li #search-button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
+.disabled-link {
+    text-decoration: line-through;
+    color: gray;
+    cursor: not-allowed;
+}
+
 #contents {
     padding: 25px 0;
 }

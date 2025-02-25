@@ -22,8 +22,8 @@
                     </form>
                 </li>
                 <li><a href="{% url "typingapp:index" %}">トップ</a></li>
-                <li><a href="{% url "contentapp:create_content" %}">文章作成</a></li>
                 {% if user.is_authenticated %}
+                    <li><a href="{% url "contentapp:create_content" %}">文章作成</a></li>
                     <li><a href="{% url "contentapp:mypage" username=request.user.username %}">マイページ</a></li>
                     <li>
                         <form method="post" action="{% url 'accounts:logout' %}">
@@ -32,6 +32,8 @@
                         </form>
                     </li>
                 {% else %}
+                    <li><a href="#" class="disabled-link" title="ログインが必要">文章作成</a></li>
+                    <li><a href="#" class="disabled-link" title="ログインが必要">マイページ</a></li>
                     <li><a href="{% url "accounts:login" %}">ログイン</a></li>
                 {% endif %}
             </ul>
