@@ -86,7 +86,11 @@
             <h2>~ TOP10 ~</h2>
             <ul>
                 {% for ranking in ranking_list|slice:":10" %}
-                    <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}</li>
+                    {% if ranking.user == request.user %}
+                        <li style="color: green; text-decoration: underline;">{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}</li>
+                    {% else %}
+                        <li>{{ forloop.counter }}位 : {{ ranking.user }} - {{ ranking.typing_time|format_duration }}</li>
+                    {% endif %}
                 {% empty %}
                     <li>まだランキングがありません</li>
                 {% endfor %}
