@@ -1,5 +1,5 @@
 from django.views import generic
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.urls import reverse
 from .forms import ContentForm
 from typingapp.models import History, Favorite
@@ -80,3 +80,42 @@ class TypingListView(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         return context
+
+class ContentSettingsView(generic.DetailView):
+    model = Content
+    template_name = "content_settings.html"
+    context_object_name = "content_object"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = ContentForm
+
+        return context
+
+    def post(self, request, *args, **kwargs):
+        action = request.POST.get("action")
+
+        if action == "update_content":
+            return self.update_content(request, *args, **kwargs)
+        elif action == "del_content":
+            return self.del_content(request, *args, **kwargs)
+        
+    def update_content(self, request, *args, **kwargs):
+        pk = self.kwargs['pk']
+        title = request.POST.get("title")
+        sentence = request.POST.get("sentence")
+        category = request.POST.get("category")
+        is_public = request.POST.get("is_public")
+
+        if is_public == "on":
+            is_public = True
+        else:
+            is_public = False
+
+        Content.objects.filter(pk=pk).update(title=title, sentence=sentence, category=category, is_public=is_public)
+        return redirect("contentapp:mypage", username=request.user.username)
+
+    def del_content(self, request, *args, **kwargs):
+        pk = self.kwargs['pk']
+        Content.objects.filter(pk=pk).delete()
+        return redirect("contentapp:mypage", username=request.user.username)
