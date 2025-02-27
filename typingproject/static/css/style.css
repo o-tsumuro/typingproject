@@ -1,7 +1,16 @@
 /*正誤判定用css*/
-.correct { background-color: rgb(103, 185, 167); }
-.incorrect { background-color: rgb(255, 131, 131); }
-#target-sentence { white-space: pre-wrap; display: inline-block; }
+.correct {
+    background-color: rgb(103, 185, 167);
+}
+
+.incorrect {
+    background-color: rgb(255, 131, 131);
+}
+
+#target-sentence {
+    white-space: pre-wrap;
+    display: inline-block;
+}
 
 * {
     margin: 0;
@@ -125,6 +134,7 @@ footer {
 .info-content {
     flex: 2.5;
 }
+
 /* ベースのスタイル >> */
 
 /* << タイピングページのスタイル */
@@ -137,7 +147,7 @@ footer {
     text-decoration: underline;
 }
 
-.detail-list #favorite-button svg{
+.detail-list #favorite-button svg {
     width: 14px;
     height: 14px;
 }
@@ -195,6 +205,7 @@ footer {
     font-size: 18px;
     margin: 0;
 }
+
 /* タイピングページのスタイル >> */
 
 /* << リザルトページのスタイル */
@@ -293,11 +304,12 @@ footer {
     .result-container {
         flex-direction: column;
     }
-    
+
     .side-content {
         order: -1;
     }
 }
+
 /* リザルトページのスタイル >> */
 
 /* << 詳細エリアのスタイル */
@@ -310,7 +322,8 @@ footer {
     margin-bottom: 20px;
 }
 
-.detail-list, .ranking_list {
+.detail-list,
+.ranking_list {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
@@ -325,6 +338,7 @@ footer {
     list-style-type: none;
     padding-left: 0;
 }
+
 /* 詳細エリアのスタイル >> */
 
 /* << ページ下部リストのスタイル */
@@ -367,6 +381,7 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 /* ページ下部リストのスタイル >> */
 
 /* << タイピングリストのスタイル */
@@ -453,6 +468,7 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 /* タイピングリストのスタイル >> */
 
 /* << ページネーションのスタイル */
@@ -504,6 +520,7 @@ footer {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 /* ページネーションのスタイル >> */
 
 /* << 認証ページ共通のスタイル */
@@ -578,6 +595,7 @@ footer {
     color: #0056b3;
     text-decoration: underline;
 }
+
 /* 認証ページ共通のスタイル >> */
 
 /* << エラーメッセージのスタイル */
@@ -599,6 +617,7 @@ footer {
 .error-message li {
     margin-bottom: 5px;
 }
+
 /* エラーメッセージのスタイル >> */
 
 /* << 文章作成ページのスタイル */
@@ -680,6 +699,7 @@ footer {
     background-color: #357abd;
     transform: translateY(-2px);
 }
+
 /* 文章作成ページのスタイル >> */
 
 /* << マイページのスタイル */
@@ -691,7 +711,8 @@ footer {
     max-width: 1200px;
 }
 
-.left-list, .center-list {
+.left-list,
+.center-list {
     flex: 1;
 }
 
@@ -705,7 +726,9 @@ footer {
     justify-content: space-between;
 }
 
-.left-list, .center-list, .right-list {
+.left-list,
+.center-list,
+.right-list {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -744,6 +767,7 @@ footer {
     text-overflow: ellipsis;
     display: inline-block;
 }
+
 /* マイページのスタイル >> */
 
 /* お気に入りリストのタイトル幅を調整 */
@@ -766,7 +790,8 @@ footer {
 }
 
 /* << 各ボタンのスタイル */
-.favorite-delete-btn, .favorite-add-btn {
+.favorite-delete-btn,
+.favorite-add-btn {
     background: none;
     border: none;
     cursor: pointer;
@@ -798,7 +823,8 @@ footer {
     transform: scale(1.2) rotate(72deg);
 }
 
-.favorite-delete-btn:hover::after, .favorite-add-btn:hover::after {
+.favorite-delete-btn:hover::after,
+.favorite-add-btn:hover::after {
     opacity: 1;
 }
 
@@ -866,6 +892,7 @@ footer {
     width: 16px;
     height: 16px;
 }
+
 /* 各ボタンのスタイル >> */
 
 /* 作成した文章のリストアイテムのスタイル調整 */
@@ -992,9 +1019,146 @@ footer {
         flex-direction: column;
     }
 
-    .site-details, .auth-section {
+    .site-details,
+    .auth-section {
         flex: 1;
     }
 }
 
 /* サイト詳細のスタイル >> */
+
+.content-settings-container {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.content-panel {
+    flex: 1;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.panel-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.5rem;
+}
+
+.content-item {
+    margin-bottom: 1.5rem;
+}
+
+.content-item h2 {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.content-item p {
+    background-color: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 4px;
+    color: #333;
+}
+
+.content-text {
+    white-space: pre-wrap;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 0.5rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.error-message ul {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .content-settings-container {
+        flex-direction: column;
+    }
+}
