@@ -768,6 +768,30 @@ footer {
     display: inline-block;
 }
 
+.content-settings-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #6c757d;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.content-settings-btn:hover {
+    color: #495057;
+    transform: scale(1.1);
+}
+
 /* マイページのスタイル >> */
 
 /* お気に入りリストのタイトル幅を調整 */
@@ -1027,6 +1051,7 @@ footer {
 
 /* サイト詳細のスタイル >> */
 
+/* << 文章設定ページのスタイル */
 .content-settings-container {
     display: flex;
     gap: 2rem;
@@ -1162,3 +1187,4 @@ footer {
         flex-direction: column;
     }
 }
+/* 文章設定ページのスタイル >> */
