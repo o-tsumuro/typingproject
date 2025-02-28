@@ -35,8 +35,6 @@ class MyPageView(generic.TemplateView):
             return self.set_public(request, *args, **kwargs)
         elif action == "set_private":
             return self.set_private(request, *args, **kwargs)
-        elif action == "del_content":
-            return self.del_content(request, *args, **kwargs)
         
     def del_favorite(self, request, *args, **kwargs):
         pk = request.POST.get("pk")
@@ -51,11 +49,6 @@ class MyPageView(generic.TemplateView):
     def set_private(self, request, *ars, **kwargs):
         pk = request.POST.get("pk")
         Content.objects.filter(pk=pk).update(is_public=False)
-        return redirect("contentapp:mypage", username=request.user.username)
-
-    def del_content(self, request, *args, **kwargs):
-        pk = request.POST.get("pk")
-        Content.objects.filter(pk=pk).delete()
         return redirect("contentapp:mypage", username=request.user.username)
 
 class TypingListView(generic.ListView):
