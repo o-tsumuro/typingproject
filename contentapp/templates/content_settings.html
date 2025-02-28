@@ -67,8 +67,23 @@
             <div class="button-group">
                 <button type="submit" class="btn btn-primary" name="action" value="update_content">編集する</button>
                 <button type="button" class="btn btn-danger" id="deleteButton">削除する</button>
+                <button type="submit" class="btn btn-warning" id="confirmDeleteButton" style="display: none;" name="action" value="del_content">削除しますか？</button>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButton = document.getElementById('deleteButton');
+        const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+    
+        deleteButton.addEventListener('click', function() {
+            deleteButton.style.display = 'none';
+            confirmDeleteButton.style.display = 'inline-block';
+            confirmDeleteButton.classList.add('show');
+        });
+    });
+</script>
+
 {% endblock %}
