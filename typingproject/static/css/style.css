@@ -854,7 +854,8 @@ footer {
 
 .create-content-btn {
     display: flex;
-    gap: 2px;
+    align-items: center; /* 垂直中央揃え */
+    gap: 8px; /* ボタン同士の間隔を調整 */
 }
 
 #public-button {
@@ -1183,21 +1184,18 @@ footer {
 }
 
 .content-settings-btn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
     color: #6c757d;
     transition: transform 0.3s ease, color 0.3s ease;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .content-settings-btn:hover {
     color: #495057;
-    transform: translateY(-50%) scale(1.1);
+    transform: translateY(-3px) scale(1.1);
 }
 
 #deleteButton, #confirmDeleteButton {
