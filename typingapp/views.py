@@ -10,7 +10,7 @@ class IndexView(generic.ListView):
     queryset = Content.objects.filter(is_public=True).order_by("?")
 
 def randomTypingView(request):
-    pk = Content.objects.order_by("?").first().pk
+    pk = Content.objects.filter(is_public=True).order_by("?").first().pk
     return redirect("typingapp:typing", pk=pk)
 
 class TypingView(generic.DetailView):
