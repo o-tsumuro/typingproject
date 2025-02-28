@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}文章設定{% endblock %}
+
+{% block contents %}
+<div class="content-settings-container">
+    <div class="content-panel original-content">
+        <h1 class="panel-title">元の文章内容</h1>
+        <div class="content-item">
+            <h2>タイトル</h2>
+            <p>{{ content_object.title }}</p>
+        </div>
+        <div class="content-item">
+            <h2>文章内容</h2>
+            <p class="content-text">{{ content_object.sentence }}</p>
+        </div>
+        <div class="content-item">
+            <h2>カテゴリー</h2>
+            <p>{{ content_object.category }}</p>
+        </div>
+        <div class="content-item">
+            <h2>公開設定</h2>
+            <p>{% if content_object.is_public %}公開する{% else %}非公開にする{% endif %}</p>
+        </div>
+    </div>
+
+    <div class="content-panel">
+        <h1 class="panel-title">文章の編集</h1>
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="error-message">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            <div class="form-group">
+                <label for="title">タイトル</label>
+                <input type="text" id="title" name="title" value="{{ content_object.title }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="sentence">文章内容</label>
+                <textarea id="sentence" name="sentence" required>{{ content_object.sentence }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="category">カテゴリー</label>
+                {{ form.category }}
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="is_public" name="is_public">
+                <label for="is_public">公開にする</label>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary" name="action" value="update_content">編集する</button>
+                <button type="button" class="btn btn-danger" id="deleteButton">削除する</button>
+                <button type="submit" class="btn btn-warning" id="confirmDeleteButton" style="display: none;" name="action" value="del_content">削除しますか？</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteButton = document.getElementById('deleteButton');
+        const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+    
+        deleteButton.addEventListener('click', function() {
+            deleteButton.style.display = 'none';
+            confirmDeleteButton.style.display = 'inline-block';
+            confirmDeleteButton.classList.add('show');
+        });
+    });
+</script>
+
+{% endblock %}
