@@ -854,8 +854,8 @@ footer {
 
 .create-content-btn {
     display: flex;
-    align-items: center; /* 垂直中央揃え */
-    gap: 8px; /* ボタン同士の間隔を調整 */
+    align-items: center;
+    gap: 8px;
 }
 
 #public-button {

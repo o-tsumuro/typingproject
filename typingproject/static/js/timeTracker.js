@@ -3,7 +3,6 @@ import { typingInput, startButton, timer } from "./domElements.js";
 let timerInterval;
 let startTime;
 
-//時間測定
 export function startTimer() {
     startTime = new Date();
     timerInterval = setInterval(() => {
@@ -18,7 +17,6 @@ export function startTimer() {
     startButton.style.display = "none";
 }
 
-//時間測定終了
 export function stopTimer() {
     clearInterval(timerInterval);
     typingInput.blur();
@@ -27,7 +25,6 @@ export function stopTimer() {
     document.getElementById("typing_form").submit();
 }
 
-//スタートボタンクリック時に計測開始
 document.addEventListener("DOMContentLoaded", () => {
     startButton.addEventListener("click", startTimer);
 });
