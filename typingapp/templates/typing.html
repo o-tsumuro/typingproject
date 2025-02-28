@@ -77,6 +77,12 @@
                     <br>
                     作成日 : {{ content_object.created_at|date:"Y-m-j" }}
                     <br>
+                    {% if content_object.category %}
+                        ジャンル : {{ content_object.category }}
+                    {% else %}
+                        ジャンル : -------
+                    {% endif %}
+                    <br>
                     プレイ回数 : {{ content_object.play_count }}
                 </p>
             </form>
